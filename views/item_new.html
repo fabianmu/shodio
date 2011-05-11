@@ -1,0 +1,222 @@
+<div class="wrapper">
+  <figure class="item_new">
+    {{#notEmpty}}
+    <form action="item_new_submit" method="post" accept-charset="utf-8" id="item_new_form">
+      <input type="hidden" name="appId" value="{{appId}}" id="appId">
+      <input type="hidden" name="appName" value="{{appName}}" id="appName">
+      <input type="hidden" name="appIcon" value="{{appIcon}}" id="appIcon">
+      <input type="hidden" name="spaceName" value="{{spaceName}}" id="spaceName">
+      <input type="hidden" name="spaceUrl" value="{{spaceUrl}}" id="spaceUrl">
+      <h2>
+        <img src="{{PODIO_ICON_PATH}}{{appIcon}}" width="16" height="16">
+        Add new {{appName}}
+        <div id="favAppIcon"></div>
+        </h2>
+      <ul>
+        {{#field}}
+          <input type="hidden" name="types[{{field_id}}]" value="{{type}}">
+          <li><label for="{{field_id}}">{{label}}</label>
+            {{#title}}
+              <input type="text" name="fields[{{field_id}}]" id="{{field_id}}" value="{{value}}" {{#required}}required="required" class="title required"{{/required}} autocomplete>
+              <span><input type="submit" name="" value="Save" disabled class="item_new_save"></input>
+            {{/title}}
+            {{#smallText}}
+              <input type="text" name="fields[{{field_id}}]" id="{{field_id}}" value="{{value}}" {{#required}}required="required" class="required"{{/required}}>
+            {{/smallText}}
+            {{#largeText}}
+              <textarea name="fields[{{field_id}}]" id="{{field_id}}" {{#required}}required="required" class="required"{{/required}}>{{value}}</textarea>
+            {{/largeText}}
+            {{#location}}
+              <input type="url" name="fields[{{field_id}}]" id="{{field_id}}" value="{{value}}" {{#required}}required="required" class="required"{{/required}}>
+            {{/location}}
+            {{#number}}
+              <input type="number" min="0" step="0.1" name="fields[{{field_id}}]" id="{{field_id}}" value="{{value}}" {{#required}}required="required" class="required"{{/required}}>
+            {{/number}}
+            {{#duration}}
+              <input type="number" min="0" step="1" name="fields[{{field_id}}]" id="{{field_id}}" value="{{value}}" {{#required}}required="required" class="required"{{/required}}>
+            {{/duration}}
+            {{#money}}
+              <input type="number" step="0.1" name="fields[{{field_id}}]" id="{{field_id}}" value="{{value}}" {{#required}}required="required" class="required"{{/required}}>
+            {{/money}}
+            {{#progress}}
+              <input type="number" step="10" min="0" max="100" name="fields[{{field_id}}]" id="{{field_id}}" value="{{value}}" class="slide_number{{#required}} required{{/required}}" {{#required}}required="required"{{/required}}>
+              <div id="slide_{{field_id}}" class="slide"></div>
+              <script type="text/javascript" charset="utf-8">
+                  $("#slide_{{field_id}}").slider({
+                    value: 0,
+                    min: 0,
+                    max: 100,
+                    step: 10,
+                    slide: function(event, ui) {
+                      $("#{{field_id}}").val(ui.value);
+                    }
+                  });
+                  $("#{{field_id}}").val($("#slide_{{field_id}}").slider("value"));
+                  $("#{{field_id}}").change(function() {
+                    $("#slide_{{field_id}}").slider( "option", "value", $(this).val() );
+                  });
+                  $("#{{field_id}}").click(function() {
+                    $("#slide_{{field_id}}").slider( "option", "value", $(this).val() );
+                  });
+              </script>
+            {{/progress}}
+            {{#state}}
+              <select size="1" id="{{field_id}}" name="fields[{{field_id}}]" {{#required}}required="required"{{/required}}>
+              {{#state_values_field_id}}
+                <option value="{{{item}}}">{{{item}}}</option>
+              {{/state_values_field_id}}
+              </select>
+            {{/state}}
+            {{#image}}
+              <!-- <input name="{{field_id}}" id="{{field_id}}" value="{{value}}" {{#required}}required="required" class="required"{{/required}}> -->
+              <!-- image upload here (post straight to podio and fetch response) -->
+              Image upload is not implemented yet. Sorry!
+            {{/image}}
+            {{#video}}
+              <!-- <input name="{{field_id}}" id="{{field_id}}" value="{{value}}" {{#required}}required="required" class="required"{{/required}}> -->
+              <!-- video upload here -->
+              Video upload is not implemented yet. Sorry!
+            {{/video}}
+            {{#media}}
+              <!-- <input name="{{field_id}}" id="{{field_id}}" value="{{value}}" {{#required}}required="required" class="required"{{/required}}> -->
+              <!-- media upload here -->
+              Media upload is not implemented yet. Sorry!
+            {{/media}}
+            {{#date}}
+              <input type="hidden" name="fields[{{field_id}}][start]" id="{{field_id}}_start" value="{{value}}">
+              <input type="hidden" name="fields[{{field_id}}][end]" id="{{field_id}}_end" value="{{value}}">
+              
+              <label for="{{field_id}}_start_date" class="date_label">Start</label>
+              <input type="text" id="{{field_id}}_start_date" value="{{value}}" class="date_date{{#required}} required{{/required}}" {{#required}}required="required"{{/required}}>
+              <input type="text" id="{{field_id}}_start_time" value="{{value}}" class="date_time{{#required}} required{{/required}}" {{#required}}required="required"{{/required}}>
+              
+              <label for="{{field_id}}_end_date" class="date_label end">End</label>
+              <input type="text" id="{{field_id}}_end_date" value="{{value}}" class="date_date">
+              <input type="text" id="{{field_id}}_end_time" value="{{value}}" class="date_time">
+              
+              <script type="text/javascript" charset="utf-8">
+                $("#{{field_id}}_start_date").datepicker({
+                   onSelect: function(dateText, inst) { $(this).val(dateText).change(); $("#{{field_id}}_start").val(dateText + ' ' + $("#{{field_id}}_start_time").val()) }
+                });
+                $("#{{field_id}}_start_time").timeEntry({show24Hours: true, timeSteps: [1, 1, 1], spinnerImage: '', defaultTime: '10:00'}).change(function() {
+                   $("#{{field_id}}_start").val($("#{{field_id}}_start_date").val() + ' ' + $(this).val());
+                });
+                $("#{{field_id}}_end_date").datepicker({
+                   onSelect: function(dateText, inst) { $(this).val(dateText).change(); $("#{{field_id}}_end").val(dateText + ' ' + $("#{{field_id}}_end_time").val()) }
+                });
+                $("#{{field_id}}_end_time").timeEntry({show24Hours: true, timeSteps: [1, 1, 1], spinnerImage: '', defaultTime: '10:00'}).change(function() {
+                   $("#{{field_id}}_end").val($("#{{field_id}}_end_date").val() + ' ' + $(this).val());
+                });
+              </script>
+            {{/date}}
+            {{#app}}
+              <input type="text" name="fields[{{field_id}}]" id="{{field_id}}" value="{{value}}" {{#required}}required="required" class="required"{{/required}}>
+              <input type="hidden" name="fields_OLD_[{{field_id}}]" id="OLD_{{field_id}}" value="">
+              <script type="text/javascript">
+                $("#{{field_id}}").tokenInput("/actions/item_search_app.php", {
+                  noResultsText: "No results",
+                  searchingText: "Searching...",
+                  queryParam: "text",
+                  topQueryParam: "fieldId={{field_id}}",
+                  formElementToHoldIds: "#{{field_id}}"
+                }).click();
+              </script>
+            {{/app}}
+            {{#app_one}}
+              <input type="text" name="fields[{{field_id}}]_value" id="{{field_id}}_value" value="{{value}}" {{#required}}required="required" class="required"{{/required}}>
+              <input type="hidden" name="fields[{{field_id}}]" id="{{field_id}}" value="">
+              <script type="text/javascript" charset="utf-8">
+                $( "#{{field_id}}_value" ).autocomplete({
+                  source: function( request, response ) {
+                    $.ajax({
+                      url: "/actions/item_search_app.php",
+                      dataType: "jsonp",
+                      data: {
+                        fieldId: {{field_id}},
+                        text: request.term
+                      },
+                      success: function( data ) {
+                        response( $.map( data, function( item ) {
+                          return {
+                            label: item.title,
+                            value: item.item_id
+                          }
+                        }));
+                      }
+                    });
+                  },
+                  minLength: 1,
+                  select: function( event, ui ) {
+                    if (ui.item.label != '') {
+                      $("#{{field_id}}_value").val(ui.item.label);
+                      $("#{{field_id}}").val(ui.item.value);
+                    } else {
+                      $("#{{field_id}}").val();
+                    }
+                    return false;
+                  },
+                  open: function() {
+                    //$( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+                  },
+                  close: function() {
+                    //$( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+                  }
+                });
+              </script>
+            {{/app_one}}
+            {{#member}}
+              <select size="1" id="{{field_id}}" name="fields[{{field_id}}]" {{#required}}required="required" class="required"{{/required}}>
+                {{#required}}
+                  <option value="">none</option>
+                {{/required}}
+                {{#member_values_field_id}}
+                  <option value="{{member_id}}">{{{member_name}}}</option>
+                {{/member_values_field_id}}
+              </select>
+            {{/member}}
+            {{#member_local}}
+              member ref here
+              <select size="4" id="{{field_id}}" multiple {{#required}}required="required" class="required"{{/required}}></select>
+              <script type="text/javascript" charset="utf-8">
+                // load members
+                // call function space.getMembers which will either load the members from localStorage or get data from podio
+              </script>
+            {{/member_local}}
+          </li>
+        {{/field}}
+        <li>
+          <span><input type="submit" name="" value="Save" disabled class="item_new_save"></span>
+        </li>
+      </ul>
+    </form>
+    <script type="text/javascript" charset="utf-8">
+      // validate form. will check if all required fields have values - and if so allows the form to be submitted
+      $("#item_new_form input[required=required], #item_new_form select[required=required]").each(function(index) {
+        $(this).keyup(function() {
+          validateForm(this);
+        });
+        $(this).change(function() {
+          validateForm(this);
+        });
+      });
+      
+      $('#item_new_form .title').focus(); // since we "click" on each autocomplete to init it we need to recall the focus on the title
+      
+      $("#item_new_form").submit(function(event) {
+        event.preventDefault();
+        $.post("/actions/item_create.php", $(this).serialize(), function(data) {
+          if (data != "ERROR") {
+            $("#item_new_form input[type=submit]").each(function(index) {
+              $("#feedback").html('<a href="{{spaceUrl}}item/' + data + '" target="podio">Open item ' + data +' in {{appName}}/{{spaceName}} on Podio</a>');
+            });
+            document.getElementById('item_new_form').reset();
+            loadAppForm({{appId}});
+          } else {
+            alert("Something went wrong :/");
+          }
+        });
+      });
+    </script>
+    {{/notEmpty}}
+  </figure>
+</div>

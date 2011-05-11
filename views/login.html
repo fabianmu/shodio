@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{{APP_NAME}}</title>
+  <script src="/lib/jquery-1.5.2.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/lib/mustache.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/lib/lawnchair/adaptors/LawnchairAdaptorHelpers.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/lib/lawnchair/adaptors/CookieAdaptor.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/lib/lawnchair/adaptors/WebkitSQLiteAdaptor.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/lib/lawnchair/Lawnchair.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/lib/app.js?2" type="text/javascript" charset="utf-8"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/main.css" type="text/css" media="screen" charset="utf-8">
+  <meta name="viewport" content="width=480; user-scalable=false"> 
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      // validate form. will check if all required fields have values - and if so allows the form to be submitted
+      
+      resizeApp();
+      
+      var validateForm = function (element) {
+        if ($(element).val().length > 0) {
+          $(element).removeClass("required");
+        } else {
+          $(element).addClass("required");
+        }
+        
+        if ($("#login .required").length <= 0) {
+          $("#login input[type=submit]").removeAttr('disabled');
+        } else {
+          $("#login input[type=submit]").attr('disabled', 'disabled');
+        }
+      }
+      $("#login input[required=required]").each(function(index) {
+        $(this).keyup(function() {
+          validateForm(this);
+        });
+        $(this).change(function() {
+          validateForm(this);
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <header>
+  <figure id="main" class="login">
+    <form action="{{APP_ROOT_URL}}" method="post" accept-charset="utf-8" id="login">
+      <input type="hidden" name="action" value="login">
+      <h2>{{APP_NAME}} enables you to post faster to your <a href="http://podio.com">podio</a> apps.<br>Please login with your podio username and password.</h2>
+      <ul>
+        {{#message}}
+        <li>
+          {{message}}
+        </li>
+        {{/message}}
+        <li>
+          <label for="username">Your podio email</label>
+          <input type="email" name="username" value="" id="username" class="required" required="required" autofocus>
+        </li>
+        <li>
+          <label for="password">Your podio password</label>
+          <input type="password" name="password" value="" id="password" class="required" required="required">
+        </li>
+        <li>
+          <input type="submit" value="login" id="submit" disabled>
+        </li>
+      </ul>
+    </form>
+    <span class="note">{{APP_NAME}} will not store your username and password, never!<br>Keep in mind that this app is not finished yet, there will be bugs!</span>
+  </figure>
+  <footer>
+    <a href="/">home</a><a href="/feedback">feedback</a><a href="/about">about</a><a href="/status">status</a><a href="/help">help</a><span class="copyright">{{APP_NAME}} is brought you by <a href="http://fabian.mu" target="_blank">fabian.mu</a></span>
+  </footer>
+</body>
+</html>

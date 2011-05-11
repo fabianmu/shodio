@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{{APP_NAME}}</title>
+  <script src="/lib/jquery-1.5.2.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/lib/mustache.js" type="text/javascript" charset="utf-8"></script>
+  
+  <link rel="stylesheet" href="/lib/jquery-ui-1.8.7.custom/css/custom-theme/jquery-ui-1.8.7.custom.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  <script src="/lib/jquery-ui-1.8.7.custom/js/jquery-ui-1.8.7.custom.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/lib/jquery.timeentry.pack.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/lib/jquery.tokeninput.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/lib/jquery.mousewheel.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/lib/lawnchair/adaptors/LawnchairAdaptorHelpers.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/lib/lawnchair/adaptors/CookieAdaptor.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/lib/lawnchair/adaptors/WebkitSQLiteAdaptor.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/lib/lawnchair/Lawnchair.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/lib/app.js?2" type="text/javascript" charset="utf-8"></script>
+  
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/main.css?2" type="text/css" media="screen" charset="utf-8">
+  <meta name="viewport" content="width=480; user-scalable=false"> 
+  
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      resizeApp();
+      getFavoriteApps();
+      getSpacesAndApps();
+      initNotificationChecker();
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <form action="" method="get" accept-charset="utf-8" id="searchForm">
+      <input type="text" name="search" placeholder="loading search..." id="search" disabled accesskey="s">
+    </form>
+    <nav id="podioCore">
+      <ul>
+        <li><a href="https://podio.com/inbox" target="podio">Inbox<span id="unread"></span></a></li>
+        <li><a href="https://podio.com/calendar" target="podio">Calendar</a></li>
+        <li><a href="https://podio.com/tasks" target="podio">Tasks</a></li>
+      </ul>
+    </nav>
+  </header>
+  <figure id="favedApps"></figure>
+  <figure id="feedback"></figure>
+  <figure id="main"></figure>
+  <footer>
+    <a href="/">home</a><a href="/feedback">feedback</a><a href="/about">about</a><a href="/status">status</a><a href="/help">help</a><a href="/?logout">logout</a><span class="copyright">{{APP_NAME}} is brought you by <a href="http://fabian.mu" target="_blank">fabian.mu</a></span>
+  </footer>
+</body>
+</html>

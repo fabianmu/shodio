@@ -1,0 +1,480 @@
+/* @override http://shodio.l/css/core.css */
+
+/*- self-clearing floats ----------*/
+
+.mod:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+/* @group basics */
+
+body{
+	font: 12px/18px Helvetica, Arial, Geneva, sans-serif;
+	margin-top: 10px;
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+a {
+	color: #1C5379;
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: underline;
+}
+
+h2 {
+}
+
+.space {
+	color: #55BA47;
+}
+
+.lg {
+	background: #EEE;
+}
+
+.dg{
+	background: #DDD;
+}
+
+header{
+	overflow: hidden;
+	margin-bottom: 5px;
+}
+
+#podioCore{
+	float: right;
+}
+
+#podioCore ul li{
+	float: left;
+	margin-right: 5px;
+	list-style: none;
+}
+#podioCore ul li a{
+  font-size: 11px;
+}
+
+#unread {
+  width: 14px;
+  height: 14px;
+  background: #6ABD3D;
+  -moz-border-radius: 14px;
+  border-radius: 14px;
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 14px;
+  text-align: center;
+  border: 2px solid #6ABD3D;
+  display: inline-block;
+  margin-left: 5px;
+  display: none;
+  color: #FFF;
+}
+
+#searchForm {
+	float: left;
+}
+
+input#search {
+	width: 270px;
+	transition: none;
+    -webkit-transition: none;
+    -moz-transition: none;
+}
+
+input#search[disabled] {
+    background: #DDD
+}
+
+#feedback {
+  margin-bottom: 5px;
+}
+
+#favedApps {
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+
+#favedApps ul li{
+	border: 1px solid #EEE;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	background: #EEE;
+	float: left;
+	margin-right: 5px;
+	list-style: none;
+	text-align: center;
+	width: auto;
+	padding: 2px 3px;
+}
+
+#favedApps ul li:hover{
+	border: 1px solid #DDD;
+	background: #DDD;
+}
+
+#favedApps ul li a:hover{
+	text-decoration: none;
+}
+
+#favedApps ul li a span{
+	display: block;
+	line-height: 15px;
+	font-size: 11px;
+}
+
+#favedApps ul li a span.appName{
+}
+
+#favedApps ul li a span.spaceName{
+	color: #55BA47;
+}
+
+footer {
+	border-top: 1px solid #EEE;
+	margin-top: 10px;
+	overflow: hidden;
+	font-size: 11px;
+	color: #004EFF;
+}
+
+footer span.copyright {
+	float: right;
+	padding-right: 4px;
+}
+
+footer a:link, footer a:visited{
+	color: #004EFF;
+	font-size: 11px;
+	margin-right: 5px;
+}
+
+footer a:active, footer a:hover{
+	color: #FF0080;
+	text-decoration: none;
+}
+
+/* @end */
+
+/* @group form */
+
+/* @group login */
+
+form#login {
+	margin-top: 20px;
+}
+
+form#login h2{
+	margin-bottom: 10px;
+}
+
+form#login li {
+	list-style: none;
+	margin-bottom: 9px;
+}
+
+form#login label {
+	float: left;
+	display: block;
+	width: 120px;
+}
+
+form#login input[type="email"],form#login input[type="password"] {
+	width: 170px;
+}
+
+form#login #submit {
+	float: none;
+	margin-left: 120px;
+}
+
+form#login .note {
+}
+
+/* @end */
+
+input, textarea, button {
+	outline:none;
+    transition: all 0.25s ease-in-out;
+    -webkit-transition: all 0.25s ease-in-out;
+    -moz-transition: all 0.25s ease-in-out;
+    border-radius:3px;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border: 1px solid #DDD;
+	padding: 2px;
+	color: #555;
+	background: #fff;
+	width: 320px;
+}
+
+textarea {
+	height: 52px;
+}
+
+input[type="text"]:focus,
+input[type="button"]:focus,
+input[type="submit"]:focus,
+button:focus,
+textarea:focus {
+    border:1px solid #aaa; 
+	color: #000;
+}
+
+input[type="text"]:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+button:hover,
+textarea:hover {
+    border:1px solid #aaa; 
+}
+
+input[type="button"],input[type="submit"], button {
+	background: #b9f1b1 url(../images/accept.png) no-repeat 3px;
+	border-color: #55BA47;
+	padding-left: 24px;
+	line-height: 18px;
+	padding-right: 6px;
+	text-transform: capitalize;
+	width: auto;
+	float: right;
+}
+
+input[type="button"][disabled],input[type="submit"][disabled], button[disabled] {
+	background: #DDD url(../images/accept_disabled.png) no-repeat 3px;
+	border: 1px solid #DDD;
+}
+
+
+input::-webkit-input-placeholder {
+	color: #999;
+}
+input:-moz-placeholder {
+	color: #999;
+}
+
+input.required,
+select.required {
+	border: 1px solid #f4a9a9;
+}
+
+select.required {
+	color: #f4a9a9;
+}
+
+/* @group date */
+
+label.date_label{
+	float: left;
+}
+
+label.date_label.end{
+	float: left;
+	margin-left: 32px;
+}
+
+input.date_date {
+	float: left;
+	width: 70px;
+}
+
+input.date_time {
+	float: left;
+	width: 34px;
+}
+
+
+
+/* @end */
+
+/* @group slide/progress */
+
+input.slide_number {
+	width: 42px;
+	float: left;
+}
+
+div.slide {
+	width: 268px;
+	float: left;
+	margin-top: 5px;
+	margin-left: 8px;
+}
+
+a.ui-slider-handle.ui-state-default.ui-corner-all {
+	outline: none;
+}
+
+/* @end */
+
+
+
+/* @end */
+
+
+
+/* @group item_new */
+
+div.wrapper {
+	overflow: hidden;
+}
+
+#unFavApp img,
+#favApp img {
+  filter:alpha(opacity=50);
+  -moz-opacity: 0.5; 
+  opacity: 0.5;
+}
+
+#unFavApp:hover img,
+#favApp:hover img {
+  filter:alpha(opacity=100);
+  -moz-opacity: 1; 
+  opacity: 1;
+}
+
+figure.item_new {
+  width: 460px;
+	float: left;
+	border: 1px solid #F5F8FC;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	background: #eef1f5;
+	padding: 5px;
+	margin-right: 5px;
+}
+
+figure.item_new #favAppIcon{
+	float: right;
+	display: inline;
+}
+
+figure.item_new ul > li{
+	list-style: none;
+	border-bottom: 1px solid #CCC;
+	padding-bottom: 6px;
+	overflow: hidden;
+	padding-top: 4px;
+}
+figure.item_new ul > li span {
+  float: right;
+}
+
+figure.item_new ul li input, figure.item_new ul li textarea{
+	margin-left: 5px;
+}
+
+figure.item_new ul li label{
+	display: block;
+}
+
+figure.item_new ul > li.token-input-input-token {
+  padding-bottom: 0px;
+  border: none;
+}
+
+figure.item_new ul > li.token-input-token.token-input-selected-token {
+  border-bottom: 1px solid #CCC;
+}
+
+figure.item_new ul > li span.token-input-delete-token {
+  float: none;
+}
+
+
+
+
+/* @end */
+
+/* @group install */
+
+body.install h2 {
+  font-size: 22px;
+  margin-bottom: 25px;
+}
+
+body.install p {
+  margin-bottom: 25px;
+  background-color: #DDD;
+  border: 5px solid #DDD;
+  line-height: 18px;
+  padding-right: 6px;
+  text-transform: capitalize;
+  border-radius: 16px;
+  padding: 2px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  color: #555;
+  display: block;
+  overflow: hidden;
+}
+
+body.install p span {
+  clear: both;
+  display: block;
+}
+
+/* @end */
+
+/* @group login */
+
+.login .note {
+	font-size: 80%;
+}
+
+/* @end */
+
+/* @group help */
+
+#help ul{
+	margin: 20px 0 0 0; padding: 0; list-style: none;
+}
+#help ul li {
+	margin: 0 0 5px 0; padding: 0; list-style: none;
+}
+
+#help .key {
+  background-color: #DDD;
+  border: 1px solid #DDD;
+  line-height: 18px;
+  padding-right: 6px;
+  text-transform: capitalize;
+  width: auto;
+  border-radius: 3px;
+  padding: 2px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  color: #555;
+}
+
+/* @end */
+
+/* @group status */
+
+#status ul{
+	margin: 20px 0 0 0; padding: 0; list-style: none;
+}
+#status ul li {
+	margin: 0 0 10px 19px; padding: 0; list-style: disc outside none; border-bottom: 1px solid #CCC;
+}
+
+#status ul li span{
+  display: block;
+  margin-top: 10px;
+}
+
+/* @end */
+
+
+
+@media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
+}
+ 

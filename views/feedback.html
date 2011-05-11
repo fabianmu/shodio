@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{{APP_NAME}}</title>
+  <script src="/lib/jquery-1.5.2.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/lib/mustache.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/lib/lawnchair/adaptors/LawnchairAdaptorHelpers.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/lib/lawnchair/adaptors/CookieAdaptor.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/lib/lawnchair/adaptors/WebkitSQLiteAdaptor.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/lib/lawnchair/Lawnchair.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/lib/app.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://podio.com/webforms/148367/4169.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/main.css" type="text/css" media="screen" charset="utf-8">
+  <meta name="viewport" content="width=480; user-scalable=false"> 
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      resizeApp();
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h2>Feedback</h2>
+  </header>
+  <figure>
+    <p>Please use the following form to give feedback. Thanks :)</p>
+    <p>
+      Checkout the <a href="/status">status page</a> to see upcoming and completed features.
+    </p>
+    <script type="text/javascript">
+      _podioWebForm.render("4169")
+    </script>
+  </figure>
+  <footer>
+    <a href="/">home</a><a href="/feedback">feedback</a><a href="/about">about</a><a href="/status">status</a><a href="/help">help</a><a href="/?logout">logout</a><span class="copyright">{{APP_NAME}} is brought you by <a href="http://fabian.mu" target="_blank">fabian.mu</a></span>
+  </footer>
+</body>
+</html>
+

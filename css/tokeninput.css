@@ -1,0 +1,139 @@
+/* @override http://shodio.l/css/tokeninput.css */
+
+ul.token-input-list {
+    /*overflow: hidden; 
+    height: auto !important; 
+    height: 1%;
+    width: 400px;
+    border: 1px solid #8496ba;
+    cursor: text;
+    font-size: 12px;
+    font-family: Verdana;
+    min-height: 1px;
+    z-index: 999;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;*/
+    cursor: text;
+
+    outline:none;
+    transition: all 0.25s ease-in-out;
+    -webkit-transition: all 0.25s ease-in-out;
+    -moz-transition: all 0.25s ease-in-out;
+    border-radius:3px;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border: 1px solid #DDD;
+	padding: 2px;
+	color: #555;
+	background: #fff;
+	width: 320px;
+  height: 19px;
+}
+
+ul.token-input-list {
+    list-style-type: none;
+}
+
+ul.token-input-list li input {
+  margin-top: -8px;
+  width: 80px;
+}
+
+li.token-input-token {
+	cursor: text;
+    outline:none;
+    border-radius:3px;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border: 1px solid #DDD;
+	color: #555;
+	background: #fff;
+  float: left;
+  margin: 0 2px 0 ;
+  padding: 0 2px !important;
+  height: 17px;
+}
+
+li.token-input-token p {
+    display: inline;
+    padding: 0;
+    margin: 0;
+}
+
+li.token-input-token span {
+    color: #a6b3cf;
+    font-weight: bold;
+    cursor: pointer;
+  margin-left: 5px;
+}
+
+/*li.token-input-selected-token {
+    background-color: #5670a6;
+    border: 1px solid #3b5998;
+    color: #fff;
+}*/
+
+li.token-input-input-token {
+    float: left;
+}
+
+div.token-input-dropdown {
+    position: absolute;
+    width: 140px;
+    background-color: #fff;
+    overflow: hidden;
+    color: #555;
+    cursor: default;
+    z-index: 1;
+
+	transition: all 0.25s ease-in-out;
+    -webkit-transition: all 0.25s ease-in-out;
+    -moz-transition: all 0.25s ease-in-out;
+    border-radius:3px;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border: 1px solid #DDD;
+	padding: 2px;
+}
+
+div.token-input-dropdown p {
+    margin: 0;
+  padding: 2px;
+}
+
+div.token-input-dropdown ul {
+    margin: 0;
+    padding: 0;
+}
+
+div.token-input-dropdown ul li {
+    background-color: #fff;
+    padding: 3px;
+    color: #555;
+    border-radius:3px;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border: 1px solid #DDD;
+
+}
+
+div.token-input-dropdown ul li.token-input-dropdown-item {
+    background-color: #fff;
+    color: #555;
+}
+
+div.token-input-dropdown ul li.token-input-dropdown-item2 {
+    background-color: #fff;
+    color: #555;
+}
+
+div.token-input-dropdown ul li em {
+    font-weight: bold;
+    font-style: none;
+}
+
+div.token-input-dropdown ul li.token-input-selected-dropdown-item {
+    background-color: #DDD;
+    color: #101010;
+}

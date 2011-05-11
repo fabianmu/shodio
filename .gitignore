@@ -1,0 +1,7 @@
+.DS_Store
+/.DS_Store
+/config/config.php
+/log/*
+log/podio_error.log
+/log/podio_error.log
+/shodio.app.zip

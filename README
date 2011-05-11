@@ -1,0 +1,35 @@
+shodio - short podio
+====================
+shodio is a shorter way to add things to podio, it stands for short podio
+
+Overview of shodio
+------------------
+shodio is meant to be simple but it still quite powerful. The basic features are:
+
+*   Access all Apps: Load any app using the global search (Hotkey: Option+s)
+*   Create new item: for any app You can create new items for all your podio apps
+*   Favorite Apps: "star" apps by simply pressing the star, access all your favorite apps using hotkeys, Option + 1, 2, 3, ...
+*   HTML5: shodio uses the advanced HTML5 input fields
+*   Local Storage: starred apps are stored on your computer using local storage
+*   Podios App-Fields: shodio suports (almost) all of podios app fields, even linked apps. File uploads are currently missing.
+*   Mac-App: use shodio as a standalone app on your Mac. Installation instructions here: [http:/shodio.fabian.mu/install](http:/shodio.fabian.mu/install "Mac-App installation instructions")
+*   Intuitive UI/UX: Forms can not be submitted if any required fields are not filled, the save button indicated
+*   Mobile friendly: shodio works on mobile devices, but it is not optimized for it yet.
+*   Still in beta: shodio has bugs and there are missing features. Please use the build in feedback form if you find something.
+*   Privacy: no data is stored on my server, all data is being posted straight to podio.
+
+Installation
+------------
+*   Get the PHP-Client for the Podio API
+*   Get an API Key for Podio
+*   copy config/config.sample.php to config/config.php and adjust the settings
+*   You need to have PEAR and Logging.
+
+Next steps / Known issues
+-------------------------
+shodio is still under development, the next improvements are:
+*   Add File uploads
+*   Add option to create tasks with shodio
+*   Improve mobile usability
+*   Growl notification for new notifications on Podio
+*   render templates in mustache.js not via PHP
