@@ -13,25 +13,25 @@ if (isset($_GET['logout'])) { // logout
 
 if ($_SERVER['REQUEST_URI'] == '/about') {
   $viewToRender = "about";
-  $template = new index;
+  $template = new index($aApp);
   echo $template->render(getView($viewToRender));
   exit();
 }
 if ($_SERVER['REQUEST_URI'] == '/help') {
   $viewToRender = "help";
-  $template = new index;
+  $template = new index($aApp);
   echo $template->render(getView($viewToRender));
   exit();
 }
 if ($_SERVER['REQUEST_URI'] == '/install') {
   $viewToRender = "install";
-  $template = new index;
+  $template = new index($aApp);
   echo $template->render(getView($viewToRender));
   exit();
 }
 if ($_SERVER['REQUEST_URI'] == '/feedback') {
   $viewToRender = "feedback";
-  $template = new index;
+  $template = new index($aApp);
   echo $template->render(getView($viewToRender));
   exit();
 }
@@ -48,19 +48,19 @@ if (!$_SESSION['oauth'] && $_POST['action'] == "login") { // loggin approach
   if ($oauth->access_token == '') { // failed
     include APP_ROOT_PATH . 'controllers/login.php';
     $viewToRender = "login";
-    $template = new login("Login failed. Please check try again.");
+    $template = new login($aApp, "Login failed. Please check try again.");
   } else { // login ok
     $_SESSION['oauth']['refresh_token'] = $oauth->refresh_token;
     $viewToRender = "index";
-    $template = new index;
+    $template = new index($aApp);
   }
 } else if (!$_SESSION['oauth'] && isset($_POST['action']) == false) { // not loggedin, no loggin approach
   include APP_ROOT_PATH . 'controllers/login.php';
   $viewToRender = "login";
-  $template = new login;
+  $template = new login($aApp);
 } else { // loggedin
   $viewToRender = "index";
-  $template = new index;
+  $template = new index($aApp);
 }
 
 echo $template->render(getView($viewToRender));

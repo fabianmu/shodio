@@ -3,16 +3,11 @@
 class index extends Mustache {
   public $APP_NAME = APP_NAME;
   public $APP_ROOT_URL = APP_ROOT_URL;
+  public $GOOGLE_ANALYTICS_ID = false;
   
-  public $title = null;
-  public $og_slug = null;
-  
-  public function __construct ($title = null, $slug = null) {
-    if (trim($title) != '') {
-      $this->title = trim($title);
-    }
-    if (trim($slug) != '') {
-      $this->og_slug = trim($slug);
+  public function __construct ($aApp) {
+    if (isset($aApp['google_analytics_id'])) {
+      $this->GOOGLE_ANALYTICS_ID = $aApp['google_analytics_id'];
     }
   }
 }
