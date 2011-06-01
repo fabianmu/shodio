@@ -5,7 +5,7 @@ define('APP_ROOT_URL', "http://" . $_SERVER['HTTP_HOST'] . "/");
 define('APP_NAME', "shodio");
 define('PODIO_ERROR_LOG', APP_ROOT_PATH . "log/podio_error.log");
 
-if ($_SERVER['HTTP_HOST'] == 'shodio.fabian.mu') {
+if ($_SERVER['HTTP_HOST'] == 'shodio.com') {
   $path = '/is/htdocs/wp10596280_Y0IYCNO7PM/pear/PEAR';
   set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 }

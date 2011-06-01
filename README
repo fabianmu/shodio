@@ -12,7 +12,7 @@ shodio is meant to be simple but it still quite powerful. The basic features are
 *   HTML5: shodio uses the advanced HTML5 input fields
 *   Local Storage: starred apps are stored on your computer using local storage
 *   Podios App-Fields: shodio suports (almost) all of podios app fields, even linked apps. File uploads are currently missing.
-*   Mac-App: use shodio as a standalone app on your Mac. Installation instructions here: [http:/shodio.fabian.mu/install](http:/shodio.fabian.mu/install "Mac-App installation instructions")
+*   Mac-App: use shodio as a standalone app on your Mac. Installation instructions here: [http://shodio.com/install](http://shodio.com/install "Mac-App installation instructions")
 *   Intuitive UI/UX: Forms can not be submitted if any required fields are not filled, the save button indicated
 *   Mobile friendly: shodio works on mobile devices, but it is not optimized for it yet.
 *   Still in beta: shodio has bugs and there are missing features. Please use the build in feedback form if you find something.
