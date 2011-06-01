@@ -290,7 +290,9 @@ input.date_time {
 	width: 34px;
 }
 
-
+figure.item_new ul > li span.timeEntry_wrap {
+  float: none;
+}
 
 /* @end */
 

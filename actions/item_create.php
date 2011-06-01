@@ -93,13 +93,20 @@ foreach ($_POST['fields'] as $field_id => $field) {
       if ($field['start'] != '') {
         $newField["field_id"] = $field_id;
         $dateTime = explode(" ", $field['start']);
+        
         $date = explode("/", $dateTime[0]);
-        $newField['values'][0]["start"] = $date[2] . "-" . $date[0] . "-" . $date[1] . " " . $dateTime[1].":00";
+        $newField['values'][0]["start"] = $date[2] . "-" . $date[0] . "-" . $date[1];
+        if (isset($dateTime[1]) && $dateTime[1] != '') { // time given as well?
+           $newField['values'][0]["start"] .= " " . $dateTime[1].":00";
+        }
       }
       if ($field['end'] != '') {
         $dateTime = explode(" ", $field['end']);
         $date = explode("/", $dateTime[0]);
-        $newField['values'][0]["end"] = $date[2] . "-" . $date[0] . "-" . $date[1] . " " . $dateTime[1].":00";
+        $newField['values'][0]["end"] = $date[2] . "-" . $date[0] . "-" . $date[1]
+        if (isset($dateTime[1]) && $dateTime[1] != '') { // time given as well?
+           $newField['values'][0]["end"] .= " " . $dateTime[1].":00";
+        }
       }
       break;
   }
