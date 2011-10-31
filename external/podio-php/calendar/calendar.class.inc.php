@@ -1,10 +1,10 @@
 <?php
 
 /**
- * The calendar is used to get the calendar for a user. The calendar includes 
- * items with a date field in the interval and tasks with a due date in 
+ * The calendar is used to get the calendar for a user. The calendar includes
+ * items with a date field in the interval and tasks with a due date in
  * the interval.
- * 
+ *
  * Calendar entries are always sorted by date.
  */
 class PodioCalendarAPI {
@@ -15,18 +15,18 @@ class PodioCalendarAPI {
   public function __construct() {
     $this->podio = PodioBaseAPI::instance();
   }
-  
+
   /**
-   * Returns all items that the user have access to and all tasks that are 
-   * assigned to the user. The items and tasks can be filtered by a list 
+   * Returns all items that the user have access to and all tasks that are
+   * assigned to the user. The items and tasks can be filtered by a list
    * of space ids, but tasks without a reference will always be returned.
    *
    * @param $date_from The date to serach from
    * @param $date_to The date to search to
-   * @param $space_ids An optional array of space ids to which the search 
+   * @param $space_ids An optional array of space ids to which the search
    *                   should be restricted
-   * @param $types The types of objects to be included. Valid options are 
-   *               "item" and "task". If left blank, all types of objects 
+   * @param $types The types of objects to be included. Valid options are
+   *               "item" and "task". If left blank, all types of objects
    *               will be returned
    *
    * @return Array of calendar events
@@ -48,15 +48,15 @@ class PodioCalendarAPI {
   }
 
   /**
-   * Returns all items and tasks that the user have access to in the given 
-   * space. Tasks with reference to other spaces are not returned or tasks 
+   * Returns all items and tasks that the user have access to in the given
+   * space. Tasks with reference to other spaces are not returned or tasks
    * with no reference.
    *
    * @param $space_id The id of the space to get calendar for
    * @param $date_from The date to serach from
    * @param $date_to The date to search to
-   * @param $types The types of objects to be included. Valid options are 
-   *               "item" and "task". If left blank, all types of objects 
+   * @param $types The types of objects to be included. Valid options are
+   *               "item" and "task". If left blank, all types of objects
    *               will be returned
    *
    * @return Array of calendar events
@@ -70,10 +70,10 @@ class PodioCalendarAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Returns the items and tasks that are related to the given app
-   * 
+   *
    * @param $app_id The id of the app to get events for
    * @param $date_from The date to serach from
    * @param $date_to The date to search to

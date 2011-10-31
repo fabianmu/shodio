@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This area is used to manage application definitions. An application 
- * definition, commonly called just an app, is the setup of an 
- * application. It consists primarily of a list of fields and secondly 
+ * This area is used to manage application definitions. An application
+ * definition, commonly called just an app, is the setup of an
+ * application. It consists primarily of a list of fields and secondly
  * of various settings.
  */
 class PodioAppAPI {
@@ -14,9 +14,9 @@ class PodioAppAPI {
   public function __construct() {
     $this->podio = PodioBaseAPI::instance();
   }
-  
+
   /**
-   * Creates a new app on a space. This creates an empty app. Fields must be 
+   * Creates a new app on a space. This creates an empty app. Fields must be
    * created manually afterwards.
    *
    * @param $space_id The id of the space on which the app is placed
@@ -25,36 +25,36 @@ class PodioAppAPI {
    * - "item_name": The name of each item in an app
    * - "description": The description of the app
    * - "usage": Description of how the app should be used
-   * - "external_id": The external id of the app. This can be used to store an 
+   * - "external_id": The external id of the app. This can be used to store an
    *                  id from an external system on the app
    * - "icon": The name of the icon used to represent the app
-   * - "allow_edit": True if other members are allowed to edit items from the 
+   * - "allow_edit": True if other members are allowed to edit items from the
    *                 app, false otherwise
    * - "default_view": The default view of the app items on the app main page
-   * - "allow_attachments": True if attachment of files to an item is allowed, 
+   * - "allow_attachments": True if attachment of files to an item is allowed,
    *                        false otherwise
-   * - "allow_comments": True if members can make comments on an item, 
+   * - "allow_comments": True if members can make comments on an item,
    *                     false otherwise
-   * - "fivestar": True if fivestar rating is enabled on an item, 
+   * - "fivestar": True if fivestar rating is enabled on an item,
    *               false otherwise
-   * - "fivestar_label": If fivestar rating is enabled, this is the label that 
+   * - "fivestar_label": If fivestar rating is enabled, this is the label that
    *                     will be presented to the users
    * - "approved": True if an item can be approved, false otherwise
-   * - "thumbs": True if an item can have a thumbs up or thumbs down, 
+   * - "thumbs": True if an item can have a thumbs up or thumbs down,
    *             false otherwise
-   * - "thumbs_label": If thumbs ratings are enabled, this is the label that 
+   * - "thumbs_label": If thumbs ratings are enabled, this is the label that
    *                   will be presented to the users
    * - "rsvp": True if RSVP is enabled, false otherwise
-   * - "rsvp_label": If RSVP is enabled, this is the label that will be 
+   * - "rsvp_label": If RSVP is enabled, this is the label that will be
    *                 presented to the users
    * - "yesno": True if yes/no rating is enabled, false otherwise
-   * - "yesno_label": If yes/no is enabled, this is the label that will be 
+   * - "yesno_label": If yes/no is enabled, this is the label that will be
    *                  presented to the users
-   * - "tasks": A comma separated list of the tasks that will automatically be 
+   * - "tasks": A comma separated list of the tasks that will automatically be
    *            created when a new item is added
-   * @param $notify True if at the space members should be notified about 
+   * @param $notify True if at the space members should be notified about
    *                this new app, false otherwise
-   * @param $subscribe True if the space members should be subscribed to this 
+   * @param $subscribe True if the space members should be subscribed to this
    *                   new app, false otherwise
    *
    * @return Array with new app id
@@ -65,13 +65,13 @@ class PodioAppAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Updates the app config. Fields must be updates separately.
    *
    * @param $app_id The id of the app to update
    * @param $config New config array. For options see the 'create' method
-   * @param $resubscribe True if all space members should be resubscribed to 
+   * @param $resubscribe True if all space members should be resubscribed to
    *                     this app, false otherwise
    */
   public function update($app_id, $config, $resubscribe) {
@@ -80,7 +80,7 @@ class PodioAppAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Activates a deactivated app. This puts the app back in the app navigator
    * and allows insertion of new items.
@@ -92,7 +92,7 @@ class PodioAppAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Deactivates the app with the given id. This removes the app from the app
    * navigator, and disables insertion of new items.
@@ -104,9 +104,9 @@ class PodioAppAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Deletes the app with the given id. This will delete all items, widgets, 
+   * Deletes the app with the given id. This will delete all items, widgets,
    * filters and shares on the app. This operating is not reversible.
    *
    * @param $app_id The id of the app to delete
@@ -118,7 +118,7 @@ class PodioAppAPI {
       }
     }
   }
-  
+
   /**
    * Returns a single field from an app.
    *
@@ -130,9 +130,9 @@ class PodioAppAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Gets the definition of an app and can include configuration and fields. 
+   * Gets the definition of an app and can include configuration and fields.
    * This method will always return the latest revision of the app definition.
    *
    * @param $app_id The id of the app to retrieve
@@ -142,7 +142,7 @@ class PodioAppAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Returns the apps that the given app depends on.
    *
@@ -157,9 +157,9 @@ class PodioAppAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Returns all the active apps on the space along with their dependencies. 
+   * Returns all the active apps on the space along with their dependencies.
    * The dependencies are only one level deep.
    *
    * @param $space_id The id of the space to get apps for
@@ -173,18 +173,18 @@ class PodioAppAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Returns the features that the given apps and optionally space includes. 
+   * Returns the features that the given apps and optionally space includes.
    * The current list of features are:
-   * 
+   *
    * - widgets
    * - tasks
    * - filters
    *
    * @param $app_ids
    *        A comma-separated list of app ids from which the features should be extracted
-   * @param $include_space 
+   * @param $include_space
    *        1 if features from the containing space should be included, 0 otherwise
    *
    * @return Array of features
@@ -194,9 +194,9 @@ class PodioAppAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Returns all the apps on the space that are visible. The apps are sorted 
+   * Returns all the apps on the space that are visible. The apps are sorted
    * by any custom ordering and else by name.
    *
    * @param $space_id The id of the space to get apps for
@@ -208,10 +208,10 @@ class PodioAppAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Returns the apps available for install on the given space. This includes 
-   * all the apps that are visible and allows insert on all the others space 
+   * Returns the apps available for install on the given space. This includes
+   * all the apps that are visible and allows insert on all the others space
    * the user is a member of.
    *
    * @param $space_id The id of the space to get apps for
@@ -223,20 +223,20 @@ class PodioAppAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Gets a list of apps by certain criteria. The apps are sorted by the 
-   * order they were created in, unless apps have been moved manually 
+   * Gets a list of apps by certain criteria. The apps are sorted by the
+   * order they were created in, unless apps have been moved manually
    * by a space administrator.
    *
-   * @param $type How the results should be returned. "full" will return both 
+   * @param $type How the results should be returned. "full" will return both
    *              config and fields, while "short" will return only the config
-   * @param $space_ids A comma-separated list of space ids to which the apps 
+   * @param $space_ids A comma-separated list of space ids to which the apps
    *                   should belong
-   * @param $status The status of the app, "active", "inactive" or "deleted". 
+   * @param $status The status of the app, "active", "inactive" or "deleted".
    *                Defaults to "active"
    * @param $owner_id The id of the owner of the app
-   * @param $external_id The external id of the app. Can be used to get apps 
+   * @param $external_id The external id of the app. Can be used to get apps
    *                     based on an external id from another system
    *
    * @return Array of apps.
@@ -249,7 +249,7 @@ class PodioAppAPI {
     if ($external_id) {
       $data['external_id'] = $external_id;
     }
-    
+
     if ($data['space_ids'] == '0') {
       return FALSE;
     }
@@ -258,11 +258,11 @@ class PodioAppAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Returns the top apps for the active user. This is the apps that the user 
+   * Returns the top apps for the active user. This is the apps that the user
    * have interacted with the most.
-   * 
+   *
    * @param $limit The maximum number of apps to return, defaults to 4.
    *
    * @return Array of apps
@@ -272,7 +272,7 @@ class PodioAppAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Adds a new field to an app
    *
@@ -280,7 +280,7 @@ class PodioAppAPI {
    * @param $type The type of field. See API documentation for possible values
    * @param $config Array with a config object for the field. Options are:
    * - "label": The label of the field, which is what the users will see
-   * - "description": The description of the field, shown to the user when 
+   * - "description": The description of the field, shown to the user when
    *                  inserting and editing
    * - "delta": An integer indicating the order of the field compared to other fields
    * - "settings": The settings of the field which depends on the type of the field
@@ -295,16 +295,16 @@ class PodioAppAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Updates the configuration of an app field. The type of the field cannot 
+   * Updates the configuration of an app field. The type of the field cannot
    * be updated, only the configuration.
-   * 
+   *
    * @param $app_id The id of the app to edit field on
    * @param $field_id The id of the field to update
    * @param $config Array with a config object for the field. Options are:
    * - "label": The label of the field, which is what the users will see
-   * - "description": The description of the field, shown to the user when 
+   * - "description": The description of the field, shown to the user when
    *                  inserting and editing
    * - "delta": An integer indicating the order of the field compared to other fields
    * - "settings": The settings of the field which depends on the type of the field
@@ -316,9 +316,9 @@ class PodioAppAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Updates the order of the apps on the space. It should post all the apps 
+   * Updates the order of the apps on the space. It should post all the apps
    * from the space in the order required.
    *
    * @param $space_id The space to order apps on
@@ -330,7 +330,7 @@ class PodioAppAPI {
     }
     return FALSE;
   }
-  
+
   /**
    * Installs the app with the given id on the space.
    *
@@ -344,6 +344,6 @@ class PodioAppAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
 }
 

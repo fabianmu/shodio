@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Files have a name, a mime-type, a size and a location. When adding files, 
- * the file should first be uploaded through the file gateway, and the 
- * location of the file should then be passed to the API. Files can be 
+ * Files have a name, a mime-type, a size and a location. When adding files,
+ * the file should first be uploaded through the file gateway, and the
+ * location of the file should then be passed to the API. Files can be
  * replaced by newer revisions.
  */
 class PodioFileAPI {
@@ -14,14 +14,14 @@ class PodioFileAPI {
   public function __construct() {
     $this->podio = PodioBaseAPI::instance();
   }
-  
+
   /**
    * Returns all the files on the space order by the file name.
    *
    * @param $space_id Space id of the space wanted
-   * @param $limit The maximum number of files to be returned. 
+   * @param $limit The maximum number of files to be returned.
    *               Defaults to 50 and cannot be higher than 100
-   * @param $offset The offset to use when returning files to be used 
+   * @param $offset The offset to use when returning files to be used
    *                for pagination. Defaults to 0 (no offset)
    *
    * @return Array of file objects
@@ -33,11 +33,11 @@ class PodioFileAPI {
   }
 
   /**
-   * Returns the latest files on the space order descending by the date the 
+   * Returns the latest files on the space order descending by the date the
    * file was uploaded.
    *
    * @param $space_id Space id of the space wanted
-   * @param $limit The maximum number of files to be returned. 
+   * @param $limit The maximum number of files to be returned.
    *               Defaults to 10 and cannot be higher than 50
    *
    * @return Array of file objects
@@ -49,7 +49,7 @@ class PodioFileAPI {
   }
 
   /**
-   * Returns the name, mimetype and location of the file. 
+   * Returns the name, mimetype and location of the file.
    * This is only used for the download script.
    *
    * @param $file_id Id for the file
@@ -59,7 +59,7 @@ class PodioFileAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Deletes the file with the given id.
    *
@@ -73,15 +73,15 @@ class PodioFileAPI {
   }
 
   /**
-   * Attaches the uploaded file to the given object. 
+   * Attaches the uploaded file to the given object.
    * Valid objects are "status", "item" and "comment".
    *
    * @param $file_id Id of the file to attach
-   * @param $ref_type Type of reference to attach to. 
+   * @param $ref_type Type of reference to attach to.
    *                  Can be "status", "item" or "comment"
    * @param $ref_id Status id, item id or comment id
    */
-  public function attach($file_id, $ref_type, $ref_id) {	
+  public function attach($file_id, $ref_type, $ref_id) {
     $data['ref_type'] = $ref_type;
     $data['ref_id'] = (int)$ref_id;
     $response = $this->podio->request('/file/'.$file_id.'/attach', $data, HTTP_Request2::METHOD_POST);
@@ -90,11 +90,11 @@ class PodioFileAPI {
     }
     return FALSE;
   }
-  
+
   /**
-   * Upload a new temporary file. After upload the file can either be attached 
-   * directly to a file using the attach operation, used to replace an 
-   * existing file using the replace operation or used as file id when 
+   * Upload a new temporary file. After upload the file can either be attached
+   * directly to a file using the attach operation, used to replace an
+   * existing file using the replace operation or used as file id when
    * posting a new object.
    *
    * @param $name The name of the file
@@ -104,17 +104,17 @@ class PodioFileAPI {
    */
   public function create($name, $mimetype) {
     $data['name'] = $name;
-    $data['mimetype'] = $mimetype; 
+    $data['mimetype'] = $mimetype;
     $response = $this->podio->request('/file/', $data, HTTP_Request2::METHOD_POST);
     if ($response) {
       return json_decode($response->getBody(), TRUE);
     }
     return FALSE;
   }
-  
+
   /**
-   * Marks the file as available on the location given when the file was 
-   * registered. This will cause the thumbnails to be generated 
+   * Marks the file as available on the location given when the file was
+   * registered. This will cause the thumbnails to be generated
    * and available.
    *
    * @param $file_id The id of the file to announce
@@ -126,12 +126,12 @@ class PodioFileAPI {
     }
     return FALSE;
   }
-  
+
   /**
-   * Marks the current file as an replacement for the old file. Only files 
+   * Marks the current file as an replacement for the old file. Only files
    * with type of "attachment" can be replaced.
    *
-   * @param $old_file_id The id of the old file that should be 
+   * @param $old_file_id The id of the old file that should be
    *                replacd with the new file
    * @param $new_file_id The id of the current file
    */

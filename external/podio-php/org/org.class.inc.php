@@ -11,12 +11,12 @@ class PodioOrgAPI {
   public function __construct() {
     $this->podio = PodioBaseAPI::instance();
   }
-  
+
   /**
    * Creates a new organization
    *
    * @param $name The name of the new organization
-   * @param $logo The file id of the logo of the organization, 
+   * @param $logo The file id of the logo of the organization,
    *              leave blank for no logo
    *
    * @return Array with the new organization id and URL
@@ -26,9 +26,9 @@ class PodioOrgAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Updates an organization with new name and logo. Note that the URL of the 
+   * Updates an organization with new name and logo. Note that the URL of the
    * organization will not change even though the name changes.
    *
    * @param $org_id The id of the organization to update
@@ -44,9 +44,9 @@ class PodioOrgAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Deletes the organization with the given id. This will also delete all 
+   * Deletes the organization with the given id. This will also delete all
    * spaces under the organization
    *
    * @param $org_id The organization id to delete
@@ -59,7 +59,7 @@ class PodioOrgAPI {
       return FALSE;
     }
   }
-  
+
   /**
    * Gets the organization with the given id.
    *
@@ -74,7 +74,7 @@ class PodioOrgAPI {
   }
 
   /**
-   * Returns the organization with the given full URL. The URL does not have 
+   * Returns the organization with the given full URL. The URL does not have
    * to be truncated to the root, it can be to any resource on the URL.
    *
    * @param $url The URL to search for
@@ -86,7 +86,7 @@ class PodioOrgAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Returns all the spaces for the organization.
    *
@@ -99,7 +99,7 @@ class PodioOrgAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Returns a list of all the organizations and spaces the user is member of.
    *
@@ -110,10 +110,10 @@ class PodioOrgAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Returns the organizations and spaces that the logged in user shares with 
-   * the specified user. The organizations and spaces will be returned sorted 
+   * Returns the organizations and spaces that the logged in user shares with
+   * the specified user. The organizations and spaces will be returned sorted
    * by name.
    *
    * @param $user_id The user to compare current user to
@@ -125,9 +125,9 @@ class PodioOrgAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Returns interesting statistics for this organization. Only org creator 
+   * Returns interesting statistics for this organization. Only org creator
    * is allowed to see this.
    *
    * @param $org_id The id of the organization to get statistics for
@@ -139,6 +139,6 @@ class PodioOrgAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
 }
 

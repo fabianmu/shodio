@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Bulletins are small updates sent from the Podio team. It can contain 
- * information about new releases, upcoming events and notifications about 
- * system maintenance. Bulletins are received by all users of Hoist, and 
+ * Bulletins are small updates sent from the Podio team. It can contain
+ * information about new releases, upcoming events and notifications about
+ * system maintenance. Bulletins are received by all users of Hoist, and
  * can only be sent by Hoist employees.
  */
 class PodioBulletinAPI {
@@ -14,7 +14,7 @@ class PodioBulletinAPI {
   public function __construct() {
     $this->podio = PodioBaseAPI::instance();
   }
-  
+
   /**
    * Returns all the bulletins
    *
@@ -38,9 +38,9 @@ class PodioBulletinAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Creates a new bulletin with the given title, summary and text. When the 
+   * Creates a new bulletin with the given title, summary and text. When the
    * bulletin is created, all users will be notified of the new bulletin.
    *
    * @param $title The title of the new bulletin
@@ -53,7 +53,7 @@ class PodioBulletinAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Updates a bulletin to correct mistakes.
    *
@@ -68,5 +68,5 @@ class PodioBulletinAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
 }

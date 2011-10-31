@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Comments are made by users on different objects. Objects can f.ex. be 
+ * Comments are made by users on different objects. Objects can f.ex. be
  * items, status, etc. Comments is simply a text that can be any length.
  *
- * Comments are made from the API of the object, see f.ex. Items for more 
+ * Comments are made from the API of the object, see f.ex. Items for more
  * details. Comments are however updated and deleted from the comment API.
  */
 class PodioCommentAPI {
@@ -15,7 +15,7 @@ class PodioCommentAPI {
   public function __construct() {
     $this->podio = PodioBaseAPI::instance();
   }
-  
+
   /**
    * Adds a new comment to the object of the given type and id.
    *
@@ -39,9 +39,9 @@ class PodioCommentAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Updates an already created comment. This should only be used to correct 
+   * Updates an already created comment. This should only be used to correct
    * spelling and grammatical mistakes in the comment.
    *
    * @param $comment_id The id of the comment to update
@@ -58,9 +58,9 @@ class PodioCommentAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Deletes a comment made by a user. This can be used to retract a comment 
+   * Deletes a comment made by a user. This can be used to retract a comment
    * that was made and which the user regrets.
    *
    * @param $comment_id The id of the comment to delete
@@ -73,10 +73,10 @@ class PodioCommentAPI {
       return FALSE;
     }
   }
-  
+
   /**
-   * Used to retrieve all the comments that have been made on an object of 
-   * the given type and with the given id. It returns a list of all the 
+   * Used to retrieve all the comments that have been made on an object of
+   * the given type and with the given id. It returns a list of all the
    * comments sorted in ascending order by time created.
    *
    * @param $ref_type
@@ -89,9 +89,9 @@ class PodioCommentAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Returns the contents of a comment. It is not possible to see where the 
+   * Returns the contents of a comment. It is not possible to see where the
    * comment was made, only the comment itself.
    *
    * @param $comment_id The id of the comment to retrieve

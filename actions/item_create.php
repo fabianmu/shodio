@@ -24,7 +24,7 @@ Array
             [219912] => Array
                 (
                     [start] => 01/07/2011 20:00
-                    [end] => 
+                    [end] =>
                 )
 
             [219913] => desc
@@ -36,8 +36,8 @@ Array
 
     [219912_start_date] => 01/07/2011
     [219912_start_time] => 20:00
-    [219912_end_date] => 
-    [219912_end_time] => 
+    [219912_end_date] =>
+    [219912_end_time] =>
 )
 */
 // create that item
@@ -52,7 +52,7 @@ foreach ($_POST['fields'] as $field_id => $field) {
     case 'media']:
     case 'money']:
     case 'video']:*/
-    
+
     case 'title':
     case 'text':
     case 'state':
@@ -93,7 +93,7 @@ foreach ($_POST['fields'] as $field_id => $field) {
       if ($field['start'] != '') {
         $newField["field_id"] = $field_id;
         $dateTime = explode(" ", $field['start']);
-        
+
         $date = explode("/", $dateTime[0]);
         $newField['values'][0]["start"] = $date[2] . "-" . $date[0] . "-" . $date[1];
         if (isset($dateTime[1]) && $dateTime[1] != '') { // time given as well?
@@ -114,7 +114,7 @@ foreach ($_POST['fields'] as $field_id => $field) {
       }
       break;
   }
-  
+
   if (isset($newField["field_id"])) {
     $newItem['fields'][] = $newField;
   }

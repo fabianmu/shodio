@@ -85,15 +85,15 @@
             {{#date}}
               <input type="hidden" name="fields[{{field_id}}][start]" id="{{field_id}}_start" value="{{value}}">
               <input type="hidden" name="fields[{{field_id}}][end]" id="{{field_id}}_end" value="{{value}}">
-              
+
               <label for="{{field_id}}_start_date" class="date_label">Start</label>
               <input type="text" id="{{field_id}}_start_date" value="{{value}}" class="date_date{{#required}} required{{/required}}" {{#required}}required="required"{{/required}}>
               <input type="text" id="{{field_id}}_start_time" value="{{value}}" class="date_time">
-              
+
               <label for="{{field_id}}_end_date" class="date_label end">End</label>
               <input type="text" id="{{field_id}}_end_date" value="{{value}}" class="date_date">
               <input type="text" id="{{field_id}}_end_time" value="{{value}}" class="date_time">
-              
+
               <script type="text/javascript" charset="utf-8">
                 $("#{{field_id}}_start_date").datepicker({
                    onSelect: function(dateText, inst) { $(this).val(dateText).change(); $("#{{field_id}}_start").val(dateText + ' ' + $("#{{field_id}}_start_time").val()) }
@@ -199,9 +199,9 @@
           validateForm(this);
         });
       });
-      
+
       $('#item_new_form .title').focus(); // since we "click" on each autocomplete to init it we need to recall the focus on the title
-      
+
       $("#item_new_form").submit(function(event) {
         event.preventDefault();
         $.post("/actions/item_create.php", $(this).serialize(), function(data) {

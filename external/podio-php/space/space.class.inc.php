@@ -1,8 +1,8 @@
 <?php
 
 /**
- * A space is a work area. Apps with their items, status updates and other 
- * things are done on a space. A user can be a member of a space with a 
+ * A space is a work area. Apps with their items, status updates and other
+ * things are done on a space. A user can be a member of a space with a
  * certain role, which dictates his rights.
  */
 class PodioSpaceAPI {
@@ -13,7 +13,7 @@ class PodioSpaceAPI {
   public function __construct() {
     $this->podio = PodioBaseAPI::instance();
   }
-  
+
   /**
    * Returns the top most active members of the space.
    *
@@ -26,7 +26,7 @@ class PodioSpaceAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Returns the top spaces for the user
    *
@@ -39,15 +39,15 @@ class PodioSpaceAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Add a new space to an organization.
    *
    * @param $org_id The id of the organization the space is in
    * @param $name The name of the space
-   * @param $post_on_new_app True if new apps should be announced with 
+   * @param $post_on_new_app True if new apps should be announced with
    *                         a status update, false otherwise
-   * @param $post_on_new_member True if new members should be announced 
+   * @param $post_on_new_member True if new members should be announced
    *                            with a status update, false otherwise
    *
    * @return Array with the new space id and URL
@@ -59,20 +59,20 @@ class PodioSpaceAPI {
       'post_on_new_app' => $post_on_new_app,
       'post_on_new_member' => $post_on_new_member,
     );
-    
+
     if ($response = $this->podio->request('/space/', $data, HTTP_Request2::METHOD_POST)) {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Updates the space with the given id
-   * 
+   *
    * @param $space_id The id of the space to act on
    * @param $name The name of the space
-   * @param $post_on_new_app True if new apps should be announced with a 
+   * @param $post_on_new_app True if new apps should be announced with a
    *                         status update, false otherwise
-   * @param $post_on_new_member True if new members should be announced 
+   * @param $post_on_new_member True if new members should be announced
    *                            with a status update, false otherwise
    */
   public function update($space_id, $name, $post_on_new_app, $post_on_new_member) {
@@ -85,9 +85,9 @@ class PodioSpaceAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Deletes the space with the given id. This will also end all memberships 
+   * Deletes the space with the given id. This will also end all memberships
    * of the space and cancel any space invites still outstanding.
    *
    * @param $space_id The id of the space to delete
@@ -100,7 +100,7 @@ class PodioSpaceAPI {
       return FALSE;
     }
   }
-  
+
   /**
    * Get the space with the given id
    *
@@ -112,17 +112,17 @@ class PodioSpaceAPI {
     if (!$space_id) {
       return FALSE;
     }
-    
+
     if ($response = $this->podio->request('/space/'.$space_id)) {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Returns the space and organization with the given full URL.
    *
    * @param $url The URL of the space to retrieve
-   * @param $info Set to "1" to return the informationals on the 
+   * @param $info Set to "1" to return the informationals on the
    *              space, "0" otherwise. Defaults to "0".
    *
    * @return Space object
@@ -132,11 +132,11 @@ class PodioSpaceAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Ends the users membership on the space, can also be called for members 
+   * Ends the users membership on the space, can also be called for members
    * in state invited.
-   * 
+   *
    * @param $space_id The id of the space to end membership on
    * @param $user_id The id of the user to end membership for
    */
@@ -148,7 +148,7 @@ class PodioSpaceAPI {
       return FALSE;
     }
   }
-  
+
   /**
    * Updates a space membership with another role
    *
@@ -161,7 +161,7 @@ class PodioSpaceAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Used to get the details of an active users membership of a space.
    *
@@ -174,12 +174,12 @@ class PodioSpaceAPI {
     if (!$space_id) {
       return FALSE;
     }
-    
+
     if ($response = $this->podio->request('/space/'.$space_id.'/member/'.$user_id)) {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Returns the active members of the given space.
    *
@@ -192,7 +192,7 @@ class PodioSpaceAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Returns a list of the members that have been removed from the space.
    *
@@ -205,9 +205,9 @@ class PodioSpaceAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Returns the members that was invited to the space, but has not yet 
+   * Returns the members that was invited to the space, but has not yet
    * accepted or declined.
    *
    * @return Array of users
@@ -217,9 +217,9 @@ class PodioSpaceAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Returns the status for a space invitation. Used to present the proper 
+   * Returns the status for a space invitation. Used to present the proper
    * screen to the user when attempting to join a space.
    *
    * @param $invite_code The invitation code sent in the space invite mail
@@ -231,7 +231,7 @@ class PodioSpaceAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Invites a list of users (either through user_id or email) to the space.
    *
@@ -239,9 +239,9 @@ class PodioSpaceAPI {
    * @param $role The role of the new users
    * @param $subject The subject to put in the invitation mail to the users
    * @param $message The personalized message to put in the invitation
-   * @param $resend True if the invitation should be resend every week, 
+   * @param $resend True if the invitation should be resend every week,
    *                false otherwise
-   * @param $notify True if the inviter should be notified when the user 
+   * @param $notify True if the inviter should be notified when the user
    *                accepts or declines the invitation
    * @param $users Array of user ids to invite
    * @param $mails Array of e-mails to invite
@@ -261,7 +261,7 @@ class PodioSpaceAPI {
     }
     return FALSE;
   }
-  
+
   /**
    * Used to accept an invite to a space
    *
@@ -273,7 +273,7 @@ class PodioSpaceAPI {
     }
     return FALSE;
   }
-  
+
   /**
    * Used to decline an invite to a space for the active user
    *
@@ -285,7 +285,7 @@ class PodioSpaceAPI {
     }
     return FALSE;
   }
-  
+
   /**
    * Resends the space invite with a new subject and message.
    *
@@ -304,7 +304,7 @@ class PodioSpaceAPI {
     }
     return FALSE;
   }
-  
+
   /**
    * Returns the statistics for the space with the number of members, statuses,
    * items and comments.
@@ -318,6 +318,6 @@ class PodioSpaceAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
 }
 

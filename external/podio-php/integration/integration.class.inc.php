@@ -22,7 +22,7 @@ class PodioIntegrationAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Refreshes the integration. This will update all items in the background.
    *

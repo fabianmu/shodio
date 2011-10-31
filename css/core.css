@@ -224,7 +224,7 @@ input[type="button"]:focus,
 input[type="submit"]:focus,
 button:focus,
 textarea:focus {
-    border:1px solid #aaa; 
+    border:1px solid #aaa;
 	color: #000;
 }
 
@@ -233,7 +233,7 @@ input[type="button"]:hover,
 input[type="submit"]:hover,
 button:hover,
 textarea:hover {
-    border:1px solid #aaa; 
+    border:1px solid #aaa;
 }
 
 input[type="button"],input[type="submit"], button {
@@ -331,14 +331,14 @@ div.wrapper {
 #unFavApp img,
 #favApp img {
   filter:alpha(opacity=50);
-  -moz-opacity: 0.5; 
+  -moz-opacity: 0.5;
   opacity: 0.5;
 }
 
 #unFavApp:hover img,
 #favApp:hover img {
   filter:alpha(opacity=100);
-  -moz-opacity: 1; 
+  -moz-opacity: 1;
   opacity: 1;
 }
 
@@ -479,4 +479,4 @@ body.install p span {
 
 @media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
 }
- 
+

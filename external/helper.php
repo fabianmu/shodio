@@ -6,7 +6,7 @@ function esc($string) {
 
 /**
  * getView returns mustache template as string
- * 
+ *
  * @param string $classname which template to load
  * @return template as string
  * @author Fabian

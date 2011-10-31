@@ -17,7 +17,7 @@ if (is_numeric($fieldId)) {
 } else {
   $return['error'] = true;
 }
- 
+
 echo isset($_GET['callback'])
     ? "{$_GET['callback']}($result)"
     : $return;

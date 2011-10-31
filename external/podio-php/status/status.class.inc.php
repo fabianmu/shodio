@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Status messages are small texts that the users wishes to share with the 
- * other users in a space. It can be anything from a note that the user will 
- * be in later today over links to interesting resources and information 
+ * Status messages are small texts that the users wishes to share with the
+ * other users in a space. It can be anything from a note that the user will
+ * be in later today over links to interesting resources and information
  * about what the user is working on a the moment.
  */
 class PodioStatusAPI {
@@ -14,9 +14,9 @@ class PodioStatusAPI {
   public function __construct() {
     $this->podio = PodioBaseAPI::instance();
   }
-  
+
   /**
-   * Retrieves a status message by its id. The id of the status message is 
+   * Retrieves a status message by its id. The id of the status message is
    * usually gotten from the stream.
    *
    * @param $status_id The id of the status to retrieve
@@ -29,7 +29,7 @@ class PodioStatusAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Retrieves the latest status message on a space from a user.
    *
@@ -44,15 +44,15 @@ class PodioStatusAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Creates a new status message for a user on a specific space. A status 
-   * update is simply a short text message that the user wishes to share with 
+   * Creates a new status message for a user on a specific space. A status
+   * update is simply a short text message that the user wishes to share with
    * the rest of the space.
    *
    * @param $space_id Id of space to create message on
    * @param $value The actual status message
-   * @param $file_ids Temporary files that have been uploaded and should be 
+   * @param $file_ids Temporary files that have been uploaded and should be
    *                  attached to this item
    * @param $alerts The users who should be alerted about this status message
    */
@@ -65,19 +65,19 @@ class PodioStatusAPI {
     if ($file_ids) {
       $data['file_ids'] = $file_ids;
     }
-    
+
     if ($response = $this->podio->request('/status/', $data, HTTP_Request2::METHOD_POST)) {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * This will update an existing status message. This will normally only be 
+   * This will update an existing status message. This will normally only be
    * used to correct spelling and grammatical mistakes.
    *
    * @param $status_id Id of status to update
    * @param $value The updated status message
-   * @param $file_ids Temporary files that have been uploaded and should 
+   * @param $file_ids Temporary files that have been uploaded and should
    *                  be attached to this item
    */
   public function update($status_id, $value, $file_ids = array()) {
@@ -86,10 +86,10 @@ class PodioStatusAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * This is used to delete a status message. This is normally only done if 
-   * the user regrets his status update. After deletion the status message 
+   * This is used to delete a status message. This is normally only done if
+   * the user regrets his status update. After deletion the status message
    * will no longer be viewable by anyone.
    *
    * @param $status_id Id of the status to delete

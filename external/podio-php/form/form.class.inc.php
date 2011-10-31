@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Forms can be used to enable direct submission into apps from websites. 
- * Forms can be configured through the API, but can only be used through 
+ * Forms can be used to enable direct submission into apps from websites.
+ * Forms can be configured through the API, but can only be used through
  * the JS script.
  */
 class PodioFormAPI {
@@ -20,7 +20,7 @@ class PodioFormAPI {
    * @param $app_id The id of the app to base form on
    * @param $settings The settings for the form. An array with these keys:
    * - "captcha": True if captcha is enabled, false otherwise
-   * - "text": The texts used for the form. Array with two keys: 
+   * - "text": The texts used for the form. Array with two keys:
    *   - "submit": The text for the submit button
    *   - "success": The text when the form was successfully submitted
    * - "theme": The theme to use. Options:
@@ -32,7 +32,7 @@ class PodioFormAPI {
    * - Georgia
    * - Lucida Sans Unicode
    * @param $domains Array of domains where the form can be used
-   * @param $field_ids Array of ids of the fields that should be 
+   * @param $field_ids Array of ids of the fields that should be
    *                   active for the form
    * @param $attachments True if attachments are allowed, false otherwise
    *
@@ -44,14 +44,14 @@ class PodioFormAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Updates the form with new settings, domains, fields, etc.
    *
    * @param $form_id The id of the form to update
    * @param $settings The settings for the form. An array with these keys:
    * - "captcha": True if captcha is enabled, false otherwise
-   * - "text": The texts used for the form. Array with two keys: 
+   * - "text": The texts used for the form. Array with two keys:
    *   - "submit": The text for the submit button
    *   - "success": The text when the form was successfully submitted
    * - "theme": The theme to use. Options:
@@ -60,7 +60,7 @@ class PodioFormAPI {
    *   - classic
    *   - dark
    * @param $domains Array of domains where the form can be used
-   * @param $field_ids Array of ids of the fields that should be 
+   * @param $field_ids Array of ids of the fields that should be
    *                   active for the form
    * @param $attachments True if attachments are allowed, false otherwise
    */
@@ -70,7 +70,7 @@ class PodioFormAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Returns the form with the given id.
    *
@@ -81,7 +81,7 @@ class PodioFormAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Returns all the active forms on the given app.
    *
@@ -94,7 +94,7 @@ class PodioFormAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Deletes the form with the given id.
    *

@@ -18,7 +18,7 @@ class PodioTaskAPI {
    * @param $text The text of the task
    * @param $private True if the task should be private, false otherwise
    * @param $due_date The due date of the task, leave blank for no due date
-   * @param $responsible The user id of the person responsible, 
+   * @param $responsible The user id of the person responsible,
    *                     leave blank for self
    * @param $ref_type "item" or "status" or "space" to create task on these
    * @param $ref_id The item id or status id or space id
@@ -37,12 +37,12 @@ class PodioTaskAPI {
     if ($responsible) {
       $data['responsible'] = (int)$responsible;
     }
-    
+
     if ($response = $this->podio->request($url, $data, HTTP_Request2::METHOD_POST)) {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Returns the task with the given id.
    *
@@ -55,10 +55,10 @@ class PodioTaskAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Gets a list of tasks with a reference to the given object. This will 
-   * return both active and completed tasks. The reference will not be 
+   * Gets a list of tasks with a reference to the given object. This will
+   * return both active and completed tasks. The reference will not be
    * set on the individual tasks.
    *
    * @param $ref_type "item" or "status"
@@ -71,7 +71,7 @@ class PodioTaskAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Update the private flag on the given task.
    *
@@ -95,7 +95,7 @@ class PodioTaskAPI {
       return TRUE;
     }
   }
-  
+
   /**
    * Updates the due date of the task to the given value
    *
@@ -107,9 +107,9 @@ class PodioTaskAPI {
       return TRUE;
     }
   }
-  
+
   /**
-   * Assigns the task to another user. This makes the user responsible for 
+   * Assigns the task to another user. This makes the user responsible for
    * the task and its completion.
    *
    * @param $task_id The id of the task to act on
@@ -120,10 +120,10 @@ class PodioTaskAPI {
       return TRUE;
     }
   }
-  
+
   /**
-   * Returns the active tasks of the user. This is the tasks where the user 
-   * is responsible. The tasks will be sorted by due date and creation time, 
+   * Returns the active tasks of the user. This is the tasks where the user
+   * is responsible. The tasks will be sorted by due date and creation time,
    * and grouped by their due date status.
    *
    * @return An array of task objects, collected by due date categories
@@ -133,7 +133,7 @@ class PodioTaskAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Returns the total task count for the active user.
    *
@@ -172,9 +172,9 @@ class PodioTaskAPI {
     }
     return $list;
   }
-  
+
   /**
-   * Returns the tasks that are started and where the active user 
+   * Returns the tasks that are started and where the active user
    * is the responsible.
    *
    * @return An array of task objects, collected by due date categories
@@ -186,7 +186,7 @@ class PodioTaskAPI {
   }
 
   /**
-   * Returns the tasks that is completed and where the active user 
+   * Returns the tasks that is completed and where the active user
    * is responsible.
    *
    * @return An array of task objects, collected by due date categories
@@ -218,10 +218,10 @@ class PodioTaskAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Returns all the tasks that are related to the space. It includes tasks 
-   * with a direct reference to the space, and tasks with an indirect 
+   * Returns all the tasks that are related to the space. It includes tasks
+   * with a direct reference to the space, and tasks with an indirect
    * reference to the space (like items and status updates).
    *
    * @param $space_id The id of the space to get tasks for
@@ -234,7 +234,7 @@ class PodioTaskAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Mark the given task as completed.
    *
@@ -252,7 +252,7 @@ class PodioTaskAPI {
   public function incomplete($task_id) {
     $this->podio->request('/task/'.$task_id.'/incomplete', array(), HTTP_Request2::METHOD_POST);
   }
-  
+
   /**
    * Indicate that work has started on the given task.
    *
@@ -261,7 +261,7 @@ class PodioTaskAPI {
   public function start($task_id) {
     $this->podio->request('/task/'.$task_id.'/start', array(), HTTP_Request2::METHOD_POST);
   }
-  
+
   /**
    * Indicate that worked has stopped on the given task.
    *
@@ -270,7 +270,7 @@ class PodioTaskAPI {
   public function stop($task_id) {
     $this->podio->request('/task/'.$task_id.'/stop', array(), HTTP_Request2::METHOD_POST);
   }
-  
+
   /**
    * This is used to delete a task.
    *
@@ -284,6 +284,6 @@ class PodioTaskAPI {
       return FALSE;
     }
   }
-  
+
 }
 
