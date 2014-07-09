@@ -12,20 +12,20 @@
   <script src="/lib/app.js?2" type="text/javascript" charset="utf-8"></script>
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
   <link rel="stylesheet" href="/css/main.css" type="text/css" media="screen" charset="utf-8">
-  <meta name="viewport" content="width=480; user-scalable=false"> 
+  <meta name="viewport" content="width=480; user-scalable=false">
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       // validate form. will check if all required fields have values - and if so allows the form to be submitted
-      
+
       resizeApp();
-      
+
       var validateForm = function (element) {
         if ($(element).val().length > 0) {
           $(element).removeClass("required");
         } else {
           $(element).addClass("required");
         }
-        
+
         if ($("#login .required").length <= 0) {
           $("#login input[type=submit]").removeAttr('disabled');
         } else {

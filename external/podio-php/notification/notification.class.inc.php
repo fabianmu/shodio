@@ -1,9 +1,9 @@
 <?php
 
 /**
- * A notification is an information about an event that occured in Podio. 
- * A notification is directed against a single user, and can have a status 
- * of either unread or viewed. Notifications have a reference to the action 
+ * A notification is an information about an event that occured in Podio.
+ * A notification is directed against a single user, and can have a status
+ * of either unread or viewed. Notifications have a reference to the action
  * that caused the notification.
  */
 class PodioNotificationAPI {
@@ -16,8 +16,8 @@ class PodioNotificationAPI {
   }
 
   /**
-   * Returns a single notification from an id. The notification will contain 
-   * the bare data, but will have a reference to the object that caused 
+   * Returns a single notification from an id. The notification will contain
+   * the bare data, but will have a reference to the object that caused
    * the notification.
    *
    * @param $notification_id The id of the notification to retrieve
@@ -31,10 +31,10 @@ class PodioNotificationAPI {
   }
 
   /**
-   * Returns a list of notifications that have not yet been viewed. 
+   * Returns a list of notifications that have not yet been viewed.
    * The notifications will be sorted descending by the time of creation.
    *
-   * @param $limit The limit on the number of notifications to 
+   * @param $limit The limit on the number of notifications to
    *               return, default is 20
    * @param $offset The offset on the notifications to return, default is 0
    *
@@ -58,17 +58,17 @@ class PodioNotificationAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Returns the notifications in the inbox that has already been viewed. 
-   * The notifications are sorted in descending order, either by viewed time 
+   * Returns the notifications in the inbox that has already been viewed.
+   * The notifications are sorted in descending order, either by viewed time
    * or creation time.
    *
-   * @param $limit The limit on the number of notifications to return, 
+   * @param $limit The limit on the number of notifications to return,
    *               default is 10
    * @param $offset The offset on the notifications to return, default is 0
-   * @param $date_type The type of date to use for sorting and filtering. 
-   *                   Can be either "created" or "viewed". 
+   * @param $date_type The type of date to use for sorting and filtering.
+   *                   Can be either "created" or "viewed".
    *                   Default is "created"
    * @param $types Array of the types of notifications to see in the inbox
    * @param $date_from The earliest date to get notifications from
@@ -96,21 +96,21 @@ class PodioNotificationAPI {
     if($users) {
       $data['users'] = implode(',', $users);
     }
-    
+
     $response = $this->podio->request('/notification/inbox/viewed', $data);
     if ($response) {
       return json_decode($response->getBody(), TRUE);
     }
-  }  
-  
+  }
+
   /**
    * Return the top filter options for the inbox viewed.
    *
-   * @param $limit The limit on how many filters of each type 
+   * @param $limit The limit on how many filters of each type
    *               should be returned
-   * @param $date_type Which kind of date should be used for the date 
+   * @param $date_type Which kind of date should be used for the date
    *                   filtering, can be either "created" or "viewed"
-   * @param $sent 1 if only sent notifications should be 
+   * @param $sent 1 if only sent notifications should be
    *              used, 0 otherwise
    *
    * @return Array of "months" and "users" available for filtering
@@ -131,7 +131,7 @@ class PodioNotificationAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Mark the notification as viewed or unviewed.
    *
@@ -154,7 +154,7 @@ class PodioNotificationAPI {
   public function markAllViewed() {
     $response = $this->podio->request('/notification//viewed', array(), HTTP_Request2::METHOD_POST);
   }
-  
+
   /**
    * Returns the notification settings for the active user
    */
@@ -164,7 +164,7 @@ class PodioNotificationAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Updates the direct notification settings for the user
    *
@@ -174,7 +174,7 @@ class PodioNotificationAPI {
     $data['direct'] = $send_notifications;
     $response = $this->podio->request('/notification/settings', $data, HTTP_Request2::METHOD_PUT);
   }
-  
+
   /**
    * Updates the digest notification settings for the user
    *

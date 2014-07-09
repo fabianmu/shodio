@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This API makes it possible to search across Podio. For now the API is very 
+ * This API makes it possible to search across Podio. For now the API is very
  * limited, but will be expanded greatly in the future.
  */
 class PodioSearchAPI {
@@ -14,7 +14,7 @@ class PodioSearchAPI {
   }
 
   /**
-   * Searches in all items and statuses. The objects will be returned sorted 
+   * Searches in all items and statuses. The objects will be returned sorted
    * descending by the time the object was created.
    *
    * @param $words An array of search strings

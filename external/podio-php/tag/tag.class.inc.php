@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Tags are words or short sentences that are used as metadata for objects. 
- * For a more detailed explanation, see this wikipedia article: 
+ * Tags are words or short sentences that are used as metadata for objects.
+ * For a more detailed explanation, see this wikipedia article:
  * http://en.wikipedia.org/wiki/Tag_(metadata)
- * 
+ *
  * Podio supports tags on statuses and items and tags that include spaces.
  */
 class PodioTagAPI {
@@ -17,7 +17,7 @@ class PodioTagAPI {
   }
 
   /**
-   * Add a new set of tags to the object. If a tag with the same text is 
+   * Add a new set of tags to the object. If a tag with the same text is
    * already present, the tag will be ignored.
    *
    * @param $text String. The tag to add
@@ -37,7 +37,7 @@ class PodioTagAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Updates the tags on the given object.
    *
@@ -62,15 +62,15 @@ class PodioTagAPI {
     $url = '/tag/'.$ref_type.'/'.$ref_id.'/';
 
     $data = array('text' => $text);
-    
+
     if ($response = $this->podio->request($url, $data, HTTP_Request2::METHOD_DELETE)) {
       return json_decode($response->getBody(), TRUE);
     }
   }
 
   /**
-   * Returns the tags on the given app. This includes only items. The tags 
-   * are first limited ordered by their frequency of use, and then 
+   * Returns the tags on the given app. This includes only items. The tags
+   * are first limited ordered by their frequency of use, and then
    * returned sorted alphabetically.
    *
    * @param $app_id The id of the app to get tags for.
@@ -91,7 +91,7 @@ class PodioTagAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Returns the top tags on the app.
    *
@@ -115,8 +115,8 @@ class PodioTagAPI {
   }
 
   /**
-   * Returns the tags on the given space. This includes both items and 
-   * statuses. The tags are ordered firstly by the number of uses, 
+   * Returns the tags on the given space. This includes both items and
+   * statuses. The tags are ordered firstly by the number of uses,
    * secondly by the tag text.
    *
    * @param $space_id The id of the space to get tags for
@@ -127,11 +127,11 @@ class PodioTagAPI {
     if ($response = $this->podio->request('/tag/space/'.$space_id . '/')) {
       return json_decode($response->getBody(), TRUE);
     }
-  }    
+  }
 
   /**
-   * Returns the objects that are tagged with the given text on the space. 
-   * The objects are returned sorted descending by the time the tag 
+   * Returns the objects that are tagged with the given text on the space.
+   * The objects are returned sorted descending by the time the tag
    * was added.
    *
    * @param $space_id The id of the space to get tags for

@@ -4,9 +4,9 @@
  * Filtering can be used to limit the items returned when viewing an app.
  *
  * There are two types of filters:
- * - Saved filters which are filters a user have saved for future reuse 
+ * - Saved filters which are filters a user have saved for future reuse
  *   by the user or other members of the space.
- * - Last used filters, which stores the filter which was last used by 
+ * - Last used filters, which stores the filter which was last used by
  *   the user on the given app.
  */
 class PodioFilterAPI {
@@ -35,7 +35,7 @@ class PodioFilterAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Returns the definition for the given filter.
    *
@@ -48,9 +48,9 @@ class PodioFilterAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Returns the last filter used by the active user on the given app. 
+   * Returns the last filter used by the active user on the given app.
    * If there was no last filter, the default filter is returned.
    *
    * @param $app_id The app to get filter for
@@ -62,7 +62,7 @@ class PodioFilterAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Returns the filters on the given app.
    *
@@ -75,7 +75,7 @@ class PodioFilterAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Deletes the given filter
    *

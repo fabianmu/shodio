@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Apps can be shared to the app store so it can be installed and used by 
- * anyone. From the app store the apps can be browsed by top apps, 
- * category and author. From here it can also be installed into a space 
+ * Apps can be shared to the app store so it can be installed and used by
+ * anyone. From the app store the apps can be browsed by top apps,
+ * category and author. From here it can also be installed into a space
  * the user is administrator on.
  */
 class PodioAppStoreAPI {
@@ -18,9 +18,9 @@ class PodioAppStoreAPI {
   /**
    * Returns the top apps in the app store in the given language.
    *
-   * @param $locale The language of the shares to return. English apps will 
+   * @param $locale The language of the shares to return. English apps will
    *                always be returned.
-   * @param $type The type of share to return, either "app", "pack" or 
+   * @param $type The type of share to return, either "app", "pack" or
    *              leave out for both.
    * @param $limit The maximum number of apps to return. Defaults to 5
    * @param $offset The offset to used when returning the apps.
@@ -37,11 +37,11 @@ class PodioAppStoreAPI {
    * Returns the apps in the app store in the given category and language.
    *
    * @param $category_id Id of the category to get apps for
-   * @param $locale The language of the shares to return. English apps will 
+   * @param $locale The language of the shares to return. English apps will
    *                always be returned.
-   * @param $sort The sorting of the shares, either "install", "rating" or 
+   * @param $sort The sorting of the shares, either "install", "rating" or
    *              "name". Defaults to "name".
-   * @param $type The type of share to return, either "app", "pack" or 
+   * @param $type The type of share to return, either "app", "pack" or
    *              leave out for both.
    * @param $limit The maximum number of apps to return. Defaults to 30
    * @param $offset The offset to used when returning the apps.
@@ -55,10 +55,10 @@ class PodioAppStoreAPI {
   }
 
   /**
-   * Returns the shares of the given object. The active users shares will be 
-   * first followed by other users shares. Besides that the shares will be 
+   * Returns the shares of the given object. The active users shares will be
+   * first followed by other users shares. Besides that the shares will be
    * sorted descending by when they were shared.
-   * 
+   *
    * @param $ref_type Type of reference. "space" or "app"
    * @param $ref_id Space id or app id
    *
@@ -92,17 +92,17 @@ class PodioAppStoreAPI {
     if ($response = $this->podio->request('/app_store/org/' . $organization_url . '/', array('language' => $locale, 'type' => $type, 'limit' => $limit, 'offset' => $offset, 'sort' => $sort))) {
       return json_decode($response->getBody(), TRUE);
     }
-  }  
+  }
 
   /**
    * Searches the app store for apps with the given language and texts.
    *
    * @param $words Comma-separated list of texts to search for
-   * @param $locale The language of the shares to return. English apps will 
+   * @param $locale The language of the shares to return. English apps will
    *                always be returned.
-   * @param $sort The sorting of the shares, either "install", "rating" or 
+   * @param $sort The sorting of the shares, either "install", "rating" or
    *              "name". Defaults to "name".
-   * @param $type The type of share to return, either "app", "pack" or 
+   * @param $type The type of share to return, either "app", "pack" or
    *              leave out for both.
    * @param $limit The maximum number of apps to return. Defaults to 30
    * @param $offset The offset to used when returning the apps.
@@ -114,11 +114,11 @@ class PodioAppStoreAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Returns the categories available in the system.
    *
-   * @param $language If specified, only categories with shares in the given 
+   * @param $language If specified, only categories with shares in the given
    *                  language will be returned
    *
    * @return Array of verticals and function categories
@@ -136,7 +136,7 @@ class PodioAppStoreAPI {
   /**
    * Returns all the apps that the active user has shared.
    *
-   * @param $type The type of shares to return, either "app" or "pack", leave 
+   * @param $type The type of shares to return, either "app" or "pack", leave
    *              out for all shares
    * @param $limit The maximum number of shares to return
    * @param $offset The offset into the list of shares
@@ -167,7 +167,7 @@ class PodioAppStoreAPI {
    *
    * @param $share_id Id of the share to install
    * @param $space_id The id of the space the shared app should be installed to
-   * @param $dependencies The list of ids of the dependent shares that should 
+   * @param $dependencies The list of ids of the dependent shares that should
    *                      also be installed, if not already present
    */
   public function install($share_id, $space_id, $dependencies) {
@@ -178,7 +178,7 @@ class PodioAppStoreAPI {
   }
 
   /**
-   * Returns the shared app from the app store with the given id. It will 
+   * Returns the shared app from the app store with the given id. It will
    * also return all comments and fivestar ratings of the app.
    *
    * @param $share_id The id of the share to retrieve
@@ -275,7 +275,7 @@ class PodioAppStoreAPI {
 
   /**
    * Unshares the given app from the app store
-   * 
+   *
    * @param $share_id The id of the share to unpublish
    */
   public function unshare($share_id) {
@@ -290,9 +290,9 @@ class PodioAppStoreAPI {
   /**
    * Returns a random featured app with the given language.
    *
-   * @param $language The language of the shares to return. English apps will 
+   * @param $language The language of the shares to return. English apps will
    *                  always be returned.
-   * @param $type The type of share to return, either "app", "pack" or leave 
+   * @param $type The type of share to return, either "app", "pack" or leave
    *              out for both.
    */
   public function getFeatured($language, $type = '') {
@@ -305,12 +305,12 @@ class PodioAppStoreAPI {
    * Returns the app store profile of the organization.
    *
    * @param $organization_url The URL of the organization
-   * 
+   *
    */
   public function getOrganizationProfile($organization_url) {
     if ($response = $this->podio->request('/app_store/org/' . $organization_url .'/profile', array())) {
       return json_decode($response->getBody(), TRUE);
     }
-  }  
+  }
 }
 

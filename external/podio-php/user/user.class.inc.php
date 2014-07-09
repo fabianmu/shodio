@@ -11,7 +11,7 @@ class PodioUserAPI {
   public function __construct() {
     $this->podio = PodioBaseAPI::instance();
   }
-  
+
   /**
    * Gets the active user
    *
@@ -24,8 +24,8 @@ class PodioUserAPI {
   }
 
   /**
-   * Updates the active user. The old and new password can be left out, 
-   * in which case the password will not be changed. If the mail is 
+   * Updates the active user. The old and new password can be left out,
+   * in which case the password will not be changed. If the mail is
    * changed, the old password has to be supplied as well.
    *
    * @param $mail The new email of the user
@@ -35,11 +35,11 @@ class PodioUserAPI {
    * @param $timezone The timezone of the user
    */
   public function update($mail, $old_password, $new_password, $locale, $timezone) {
-    
+
     $data = array(
-      'mail' => $mail, 
+      'mail' => $mail,
       'old_password' => $old_password,
-      'new_password' => $new_password, 
+      'new_password' => $new_password,
       'locale' => $locale,
       'timezone' => $timezone,
     );
@@ -48,14 +48,14 @@ class PodioUserAPI {
       unset($data['new_password']);
       unset($data['mail']);
     }
-    
+
     $response = $this->podio->request('/user/'.$user_id, $data, HTTP_Request2::METHOD_PUT);
     if ($response && $response->getStatus() == '204') {
       return TRUE;
     }
     return FALSE;
   }
-  
+
   /**
    * Returns the profile of the active user
    */
@@ -66,7 +66,7 @@ class PodioUserAPI {
   }
 
   /**
-   * Returns the current status for the user. This includes the user data, 
+   * Returns the current status for the user. This includes the user data,
    * profile data and notification data.
    */
   public function getStatus() {
@@ -91,7 +91,7 @@ class PodioUserAPI {
   }
 
   /**
-   * Sets the value of the property for the active user with the given name. 
+   * Sets the value of the property for the active user with the given name.
    * The property is specific to the auth client used.
    *
    * @param $name String. Name of property to set.
@@ -102,7 +102,7 @@ class PodioUserAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Deletes the property for the active user with the given name.
    * The property is specific to the auth client used.
@@ -117,9 +117,9 @@ class PodioUserAPI {
       return FALSE;
     }
   }
-  
+
   /**
-   * Updates the fields of an existing profile. Fields not specified will 
+   * Updates the fields of an existing profile. Fields not specified will
    * not be updated. To delete a field set the value of the field to null.
    *
    * @param $data Array of field name/value pairs
@@ -129,7 +129,7 @@ class PodioUserAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Updates the specific field on the user.
    *
@@ -141,7 +141,7 @@ class PodioUserAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Add a new user to Podio.
    *
@@ -165,9 +165,9 @@ class PodioUserAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Used to recover a password. This method will send a recovery code to the 
+   * Used to recover a password. This method will send a recovery code to the
    * users mail address, which can then be used to reset the password.
    *
    * @param $mail The e-mail to recover password for
@@ -180,9 +180,9 @@ class PodioUserAPI {
       return FALSE;
     }
   }
-  
+
   /**
-   * Resets a users password by supplying a recovery code gotten in a mail 
+   * Resets a users password by supplying a recovery code gotten in a mail
    * from the recover password operation.
    *
    * @param $password The new password for this user
@@ -195,7 +195,7 @@ class PodioUserAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Activates the given user. This will make it possible to login as the user.
    *
@@ -217,7 +217,7 @@ class PodioUserAPI {
     if ($timezone) {
       $data['timezone'] = $timezone;
     }
-    
+
     if ($response = $this->podio->request('/user/activate_user', $data, HTTP_Request2::METHOD_POST)) {
       if ($response->getStatus() == '204') {
         return TRUE;
@@ -228,10 +228,10 @@ class PodioUserAPI {
   }
 
   /**
-   * Invites the contact to try out Podio. 
+   * Invites the contact to try out Podio.
    * Either profile_id or mail must given.
    *
-   * @param $profile_id The id of the profile to invite. 
+   * @param $profile_id The id of the profile to invite.
    *                    The profile must have an mail address
    * @param $mail The mail address of the person to invite
    */
@@ -262,7 +262,7 @@ class PodioUserAPI {
       return FALSE;
     }
   }
-  
+
   /**
    * Returns the current first time user experience status for the user.
    * This includes user's number of orgs, spaces, apps and users.
@@ -286,6 +286,6 @@ class PodioUserAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
 }
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Widgets are small components that can be installed on an organization, 
+ * Widgets are small components that can be installed on an organization,
  * space or an app. Every widget has a title and is of a certain type.
  */
 class PodioWidgetAPI {
@@ -12,9 +12,9 @@ class PodioWidgetAPI {
   public function __construct() {
     $this->podio = PodioBaseAPI::instance();
   }
-  
+
   /**
-   * Create a new widget on the given reference. Supported references are 
+   * Create a new widget on the given reference. Supported references are
    * organizations, spaces and apps.
    *
    * @param $ref_type What to attach the widget to. "app" or "space"
@@ -38,7 +38,7 @@ class PodioWidgetAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Updates a widget with a new title and configuration.
    *
@@ -55,7 +55,7 @@ class PodioWidgetAPI {
       return FALSE;
     }
   }
-  
+
   /**
    * Returns the widget with the given id.
    *
@@ -68,9 +68,9 @@ class PodioWidgetAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
-   * Returns the widgets on the given reference for display. This includes the 
+   * Returns the widgets on the given reference for display. This includes the
    * current data to be shown in the widgets.
    *
    * @param $ref_type What context to get widgets for. "app" or "space"
@@ -83,7 +83,7 @@ class PodioWidgetAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Deletes the given widget.
    *
@@ -97,9 +97,9 @@ class PodioWidgetAPI {
       return FALSE;
     }
   }
-  
+
   /**
-   * Updates the order of the widgets on a reference. The ids of the widgets 
+   * Updates the order of the widgets on a reference. The ids of the widgets
    * should be put in the new requested order.
    *
    * @param $ref_type What context to update order for. "app" or "space"

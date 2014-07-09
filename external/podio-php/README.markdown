@@ -23,12 +23,12 @@ Before you can make any API calls you need to obtain an OAuth access token. You 
     require_once('/path/to/podio-php/PodioAPI.php');
     $oauth = PodioOAuth::instance();
     $baseAPI = PodioBaseAPI::instance($server, $client_id, $client_secret, $upload_end_point);
-    
+
     // Obtain access token
     $oauth->getAccessToken('password', array('username' => $username, 'password' => $password));
-    
+
     print $oauth->access_token; // Your access token
-    
+
     // Woohoo! Now it's time to make API calls!
 
 # Making API calls
@@ -37,10 +37,10 @@ To make API calls you use the `PodioAPI` class. This is contains references to a
 For example: If I want to post a new status message _'Posted from the PHP Client'_ to a space I would call the `create` method in the `status` area like so:
 
     $api = new PodioAPI();
-    
+
     // $space_id is the id for the space I want to post the status message on
     $response = $api->status->create($space_id, 'Posted from the PHP Client');
-    
+
     if ($response) {
       print 'The id for the status message is: '.$response['status_id'];
     }
@@ -51,7 +51,7 @@ The Podio API always returns data in JSON and the PHP client automatically decod
 If you wish to upload a file, for example to status messages, comments, items, widgets etc., you will use the `upload` method in the `api` area:
 
     $response = $api->api->upload($path_to_file, $filename_to_display);
-    
+
     if ($response) {
       print 'File uploaded. The file id is: '.$response['result']['file_id'];
     }
@@ -72,7 +72,7 @@ The PHP Client is documented using Doxygen. For your convenience a Doxygen confi
 
 # Full example: Posting status message with an image
     require_once('/path/to/podio-php/PodioAPI.php');
-    
+
     $server = 'https://api.podio.com:443';
     $client_id = 'MY_OAUTH_CLIENT_ID';
     $client_secret = 'MY_OAUTH_CLIENT_SECRET';
@@ -80,15 +80,15 @@ The PHP Client is documented using Doxygen. For your convenience a Doxygen confi
 
     $oauth = PodioOAuth::instance();
     $baseAPI = PodioBaseAPI::instance($server, $client_id, $client_secret, $upload_end_point);
-    
+
     // Obtain access token
     $username = 'MY_USERNAME';
     $password = 'MY_PASSWORD';
     $oauth->getAccessToken('password', array('username' => $username, 'password' => $password));
-    
+
     // Upload file
     $file = $api->api->upload('/path/to/myimage.png', 'myimage.png');
-    
+
     // Post status message
     $space_id = MY_SPACE_ID;
     $api->status->create($space_id, 'This has an image attached', array((int)$file['result']['file_id']));

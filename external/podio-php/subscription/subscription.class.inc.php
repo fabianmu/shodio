@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Subscriptions allows the user to be notified when an object is created, 
+ * Subscriptions allows the user to be notified when an object is created,
  * updated, delete, comments added to it or rated.
  */
 class PodioSubscriptionAPI {
@@ -14,8 +14,8 @@ class PodioSubscriptionAPI {
   }
 
   /**
-   * Subscribes the user to the given object. Based on the object type, the 
-   * user will receive notifications when actions are performed on the object. 
+   * Subscribes the user to the given object. Based on the object type, the
+   * user will receive notifications when actions are performed on the object.
    *
    * @param $ref_type Either "app", "item", "status" or "space"
    * @param $ref_id The matching id (app id, item id or status id)
@@ -25,7 +25,7 @@ class PodioSubscriptionAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Unsubscribe from getting notifications on actions on the given object.
    *
@@ -40,7 +40,7 @@ class PodioSubscriptionAPI {
       return FALSE;
     }
   }
-  
+
   /**
    * Stops the subscription with the given id
    *
@@ -54,7 +54,7 @@ class PodioSubscriptionAPI {
       return FALSE;
     }
   }
-  
+
   /**
    * Returns the subscription with the given id
    *

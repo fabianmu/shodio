@@ -7,7 +7,7 @@ require_once('HTTP/Request2.php');
  * Singleton class for handling OAuth with the Podio API.
  */
 class PodioOAuth {
-  
+
   private static $instance;
   /**
    * The current access token. Used on every API call
@@ -29,14 +29,14 @@ class PodioOAuth {
   private function __construct($error_handler = '') {
     $this->access_token = '';
     $this->refresh_token = '';
-    
+
     if ($error_handler) {
       $this->error_handler = $error_handler;
     }
   }
 
   /**
-   * Constructor for the singleton instance. Call with parameters first time, 
+   * Constructor for the singleton instance. Call with parameters first time,
    * call without parameters subsequent times.
    *
    * @param $error_handler A function name to use as the error handler
@@ -56,7 +56,7 @@ class PodioOAuth {
    * @param $grant_type The type of request. Can be:
    * - password: Use username and password to get access token
    * - refresh token: Refresh expired access token
-   * - authorization_code: Use the authorization code obtained from step 
+   * - authorization_code: Use the authorization code obtained from step
    *   one of the authorization
    * @param $data Request data. Varies by grant type. See OAuth specification
    *
@@ -67,7 +67,7 @@ class PodioOAuth {
     $post_data = array();
     $post_data['client_id'] = $api->getClientId();
     $post_data['client_secret'] = $api->getClientSecret();
-    
+
     switch ($grant_type) {
       case 'password':
         $post_data['grant_type'] = 'password';
@@ -86,7 +86,7 @@ class PodioOAuth {
       default:
         break;
     }
-    
+
     $request = new HTTP_Request2($api->getUrl() . '/oauth/token', HTTP_Request2::METHOD_POST, array(
       'ssl_verify_peer'   => false,
       'ssl_verify_host'   => false
@@ -102,13 +102,13 @@ class PodioOAuth {
     foreach ($post_data as $key => $value) {
       $request->addPostParameter($key, $value);
     }
-    
+
     try {
         $response = $request->send();
         switch ($response->getStatus()) {
-          case 200 : 
-          case 201 : 
-          case 204 : 
+          case 200 :
+          case 201 :
+          case 204 :
             $token = json_decode($response->getBody(), TRUE);
             if ($token) {
               $this->access_token = $token['access_token'];
@@ -117,13 +117,13 @@ class PodioOAuth {
               return TRUE;
             }
             break;
-          case 401 : 
-          case 400 : 
-          case 403 : 
-          case 404 : 
-          case 410 : 
-          case 500 : 
-          case 503 : 
+          case 401 :
+          case 400 :
+          case 403 :
+          case 404 :
+          case 410 :
+          case 500 :
+          case 503 :
             $this->access_token = '';
             $this->refresh_token = '';
             $this->expires_in = '';
@@ -133,7 +133,7 @@ class PodioOAuth {
             }
             return FALSE;
             break;
-          default : 
+          default :
             $this->access_token = '';
             $this->refresh_token = '';
             $this->expires_in = '';
@@ -146,7 +146,7 @@ class PodioOAuth {
     }
     return FALSE;
   }
-  
+
   /**
    * Throws an OAuth error. If an error callback is defined it will be called.
    */

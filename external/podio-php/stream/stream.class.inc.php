@@ -1,8 +1,8 @@
 <?php
 
 /**
- * The stream API will supply the different streams. Currently supported is 
- * the global stream, the organization stream and the space stream. 
+ * The stream API will supply the different streams. Currently supported is
+ * the global stream, the organization stream and the space stream.
  */
 class PodioStreamAPI {
   /**
@@ -12,15 +12,15 @@ class PodioStreamAPI {
   public function __construct() {
     $this->podio = PodioBaseAPI::instance();
   }
-  
+
   /**
-   * Returns the global stream. The types of objects in the stream can 
-   * be either "item", "status" or "task". See API documentation 
+   * Returns the global stream. The types of objects in the stream can
+   * be either "item", "status" or "task". See API documentation
    * for details.
    *
    * @param $limit The number of stream objects to get. Defaults to 20
    * @param $offset How far should the objects be offset, defaults to 0
-   * @param $latest The date and time that all events should be before, 
+   * @param $latest The date and time that all events should be before,
    *                defaults to no limit
    *
    * @return An array of stream objects
@@ -36,14 +36,14 @@ class PodioStreamAPI {
   }
 
   /**
-   * Returns an organisation stream. The types of objects in the stream can 
-   * be either "item", "status" or "task". See API documentation 
+   * Returns an organisation stream. The types of objects in the stream can
+   * be either "item", "status" or "task". See API documentation
    * for details.
    *
    * @param $org_id The id of the organisation to get a stream for
    * @param $limit The number of stream objects to get. Defaults to 20
    * @param $offset How far should the objects be offset, defaults to 0
-   * @param $latest The date and time that all events should be before, 
+   * @param $latest The date and time that all events should be before,
    *                defaults to no limit
    *
    * @return An array of stream objects
@@ -59,14 +59,14 @@ class PodioStreamAPI {
   }
 
   /**
-   * Returns a space stream. The types of objects in the stream can 
-   * be either "item", "status" or "task". See API documentation 
+   * Returns a space stream. The types of objects in the stream can
+   * be either "item", "status" or "task". See API documentation
    * for details.
    *
    * @param $space_id The id of the space to get a stream for
    * @param $limit The number of stream objects to get. Defaults to 20
    * @param $offset How far should the objects be offset, defaults to 0
-   * @param $latest The date and time that all events should be before, 
+   * @param $latest The date and time that all events should be before,
    *                defaults to no limit
    *
    * @return An array of stream objects
@@ -82,19 +82,19 @@ class PodioStreamAPI {
   }
 
   /**
-   * Get objects for a stream. This includes items and statuses with comments, 
+   * Get objects for a stream. This includes items and statuses with comments,
    * ratings, files and edits.
    *
    * @param $type The type of stream to get. May be:
    * - global: Stream for all spaces and organizations
    * - org: Stream for a single organization
    * - space: Stream for a single space
-   * 
+   *
    * Defaults to 'global'
    * @param $ref_id The space id or org id when getting stream for org or space
    * @param $limit The number of stream objects to get. Defaults to 20
    * @param $offset How far should the objects be offset, defaults to 0
-   * @param $latest The date and time that all events should be before, 
+   * @param $latest The date and time that all events should be before,
    *                defaults to no limit
    *
    * @return An array of stream objects
@@ -116,8 +116,8 @@ class PodioStreamAPI {
   }
 
   /**
-   * Returns an object (item or status) as a stream object. This is useful 
-   * when a new status has been posted and should be rendered directly in the 
+   * Returns an object (item or status) as a stream object. This is useful
+   * when a new status has been posted and should be rendered directly in the
    * stream without reloading the entire stream.
    *
    * @param $ref_type The type of object. "status" or "item"
@@ -134,8 +134,8 @@ class PodioStreamAPI {
   }
 
   /**
-   * Returns an object (item or status) as a stream object. This is useful 
-   * when a new status has been posted and should be rendered directly in the 
+   * Returns an object (item or status) as a stream object. This is useful
+   * when a new status has been posted and should be rendered directly in the
    * stream without reloading the entire stream.
    *
    * @param $ref_type The type of object. "status" or "item"
@@ -150,7 +150,7 @@ class PodioStreamAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Returns the apps and spaces the user has muted in the global stream.
    */
@@ -159,7 +159,7 @@ class PodioStreamAPI {
       return json_decode($response->getBody(), TRUE);
     }
   }
-  
+
   /**
    * Mutes the app from the users global stream
    *
@@ -184,7 +184,7 @@ class PodioStreamAPI {
       return FALSE;
     }
   }
-  
+
   /**
    * Mutes the space from the users global stream.
    *

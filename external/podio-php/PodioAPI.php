@@ -32,7 +32,7 @@ require_once('form/form.class.inc.php');
 require_once('integration/integration.class.inc.php');
 
 /**
- * Primary Podio API implementation class. This is merely a container for 
+ * Primary Podio API implementation class. This is merely a container for
  * the specific API areas.
  */
 class PodioAPI {
@@ -171,7 +171,7 @@ class PodioAPI {
  * A Singleton class that handles all communication with the API server.
  */
 class PodioBaseAPI {
-  
+
   /**
    * URL for the API server
    */
@@ -232,9 +232,9 @@ class PodioBaseAPI {
     );
     $this->error_handler = NULL;
   }
-  
+
   /**
-   * Constructor for the singleton instance. Call with parameters first time, 
+   * Constructor for the singleton instance. Call with parameters first time,
    * call without parameters subsequent times.
    *
    * @param $url URL for the API server
@@ -251,7 +251,7 @@ class PodioBaseAPI {
     }
     return self::$instance;
   }
-  
+
   /**
    * Set the API error handler.
    *
@@ -260,7 +260,7 @@ class PodioBaseAPI {
   public function setErrorHandler($handler) {
     $this->error_handler = $handler;
   }
-  
+
   /**
    * Log a message to the API log
    *
@@ -272,7 +272,7 @@ class PodioBaseAPI {
     $logger = &Log::singleton($this->log_handler, $this->log_name, $this->log_ident);
     $logger->log('[api] ' . $message, $level);
   }
-  
+
   /**
    * Set the log handler for the API log. See:
    * http://www.indelible.org/php/Log/guide.html#configuring-a-handler
@@ -285,7 +285,7 @@ class PodioBaseAPI {
     $this->log_name = $name;
     $this->log_ident = $ident;
   }
-  
+
   /**
    * Get the current log level for an area.
    *
@@ -299,7 +299,7 @@ class PodioBaseAPI {
   public function getLogLevel($name) {
     return $this->log_levels[$name];
   }
-  
+
   /**
    * Set the current log level for an area.
    * @param $name Area to set. Can be:
@@ -313,42 +313,42 @@ class PodioBaseAPI {
   public function setLogLevel($name, $value) {
     $this->log_levels[$name] = $value;
   }
-  
+
   /**
    * Get the current API server URL
    */
   public function getUrl() {
     return $this->url;
   }
-  
+
   /**
    * Get the OAuth client id
    */
   public function getClientId() {
     return $this->client_id;
   }
-  
+
   /**
    * Get the OAuth client secret
    */
   public function getClientSecret() {
     return $this->secret;
   }
-  
+
   /**
    * Get the last error message from the API server
    */
   public function getError() {
     return $this->last_error;
   }
-  
+
   /**
    * Get the last error status code from the API server
    */
   public function getErrorStatusCode() {
     return $this->last_error_status_code;
   }
-  
+
   /**
    * Normalize filters for GET requests
    */
@@ -383,7 +383,7 @@ class PodioBaseAPI {
     }
     return $data;
   }
-  
+
   /**
    * Upload a file for later use.
    *
@@ -404,25 +404,25 @@ class PodioBaseAPI {
     $request->setHeader('User-Agent', 'Podio API Client/1.0');
     $request->setHeader('Accept', 'application/json');
     $request->setHeader('Authorization', 'OAuth2 '.$oauth->access_token);
-    
+
     $request->addUpload('file', $file);
     $request->addPostParameter('name', $name);
 
     try {
         $response = $request->send();
         switch ($response->getStatus()) {
-          case 200 : 
-          case 201 : 
-          case 204 : 
+          case 200 :
+          case 201 :
+          case 204 :
             return json_decode($response->getBody(), TRUE);
             break;
-          case 401 : 
-          case 400 : 
-          case 403 : 
-          case 404 : 
-          case 410 : 
-          case 500 : 
-          case 503 : 
+          case 401 :
+          case 400 :
+          case 403 :
+          case 404 :
+          case 410 :
+          case 500 :
+          case 503 :
             if ($this->getLogLevel('error')) {
               $this->log($request->getMethod() .' '. $response->getStatus().' '.$response->getReasonPhrase().' '.$request->getUrl(), PEAR_LOG_WARNING);
               $this->log($response->getBody(), PEAR_LOG_WARNING);
@@ -431,7 +431,7 @@ class PodioBaseAPI {
             $this->last_error_status_code = $response->getStatus();
             return FALSE;
             break;
-          default : 
+          default :
             break;
         }
     } catch (HTTP_Request2_Exception $e) {
@@ -440,7 +440,7 @@ class PodioBaseAPI {
       }
     }
   }
-  
+
   /**
    * Build and perform an API request.
    *
@@ -456,7 +456,7 @@ class PodioBaseAPI {
       'ssl_verify_peer'   => false,
       'ssl_verify_host'   => false
     ));
-    
+
     $request->setConfig('use_brackets', FALSE);
     $request->setConfig('follow_redirects', TRUE);
     $request->setHeader('User-Agent', 'Podio API Client/1.0');
@@ -466,7 +466,7 @@ class PodioBaseAPI {
       $request->setHeader('X-Podio-Frontend-Token', $this->frontend_token);
     }
     $location = $request->getUrl();
-    
+
     // These URLs can be called without an access token.
     $no_token_list = array(
       '@^/$@',
@@ -488,7 +488,7 @@ class PodioBaseAPI {
       '@^/app_store/org/[\w]+/$@',
       '@^/app_store/org/[\w]+/profile$@',
     );
-    
+
     $is_on_no_token_list = FALSE;
     foreach ($no_token_list as $regex) {
       if (preg_match($regex, $url)) {
@@ -496,7 +496,7 @@ class PodioBaseAPI {
         break;
       }
     }
-    
+
     if (!($url == '/user/' && $method == HTTP_Request2::METHOD_POST) && !$is_on_no_token_list) {
       if (!$oauth->access_token && !(substr($url, 0, 6) == '/file/' && substr($url, -9) == '/location')) {
         return FALSE;
@@ -505,9 +505,9 @@ class PodioBaseAPI {
     if ($oauth->access_token) {
       $request->setHeader('Authorization', 'OAuth2 '.$oauth->access_token);
     }
-    
+
     switch ($method) {
-      case HTTP_Request2::METHOD_GET : 
+      case HTTP_Request2::METHOD_GET :
         $request->setHeader('Content-type', 'application/x-www-form-urlencoded');
         if (is_array($data)) {
           foreach ($data as $key => $value) {
@@ -515,7 +515,7 @@ class PodioBaseAPI {
           }
         }
         break;
-      case HTTP_Request2::METHOD_DELETE : 
+      case HTTP_Request2::METHOD_DELETE :
         $request->setHeader('Content-type', 'application/x-www-form-urlencoded');
         if (is_array($data)) {
           foreach ($data as $key => $value) {
@@ -523,12 +523,12 @@ class PodioBaseAPI {
           }
         }
         break;
-      case HTTP_Request2::METHOD_POST : 
-      case HTTP_Request2::METHOD_PUT : 
+      case HTTP_Request2::METHOD_POST :
+      case HTTP_Request2::METHOD_PUT :
         $request->setHeader('Content-type', 'application/json');
         $request->setBody(json_encode($data));
         break;
-      default : 
+      default :
         break;
     }
 
@@ -543,19 +543,19 @@ class PodioBaseAPI {
     try {
         $response = $request->send();
         switch ($response->getStatus()) {
-          case 200 : 
+          case 200 :
             return $response;
             break;
-          case 201 : 
+          case 201 :
             // Only POST requests can result in 201 Created.
             if ($request->getMethod() == HTTP_Request2::METHOD_POST) {
               return $response;
             }
             break;
-          case 204 : 
+          case 204 :
             return $response;
             break;
-          case 401 : 
+          case 401 :
             $body = json_decode($response->getBody(), TRUE);
             if (strstr($body['error_description'], 'expired_token')) {
               if ($oauth->refresh_token) {
@@ -589,7 +589,7 @@ class PodioBaseAPI {
               $oauth->throwError('invalid_token', 'Invalid token.');
             }
             break;
-          case 400 : 
+          case 400 :
             $body = json_decode($response->getBody(), TRUE);
             if (strstr($body['error'], 'invalid_grant')) {
               $oauth = PodioOAuth::instance();
@@ -599,9 +599,9 @@ class PodioBaseAPI {
               $oauth->throwError('invalid_grant', 'Invalid grant.');
               break;
             }
-          case 403 : 
-          case 404 : 
-          case 410 : 
+          case 403 :
+          case 404 :
+          case 410 :
             if ($this->getLogLevel('error')) {
               $this->log($request->getMethod() .' '. $response->getStatus().' '.$response->getReasonPhrase().' '.$request->getUrl(), PEAR_LOG_WARNING);
               $this->log($response->getBody(), PEAR_LOG_WARNING);
@@ -610,22 +610,22 @@ class PodioBaseAPI {
             $this->last_error_status_code = $response->getStatus();
             return FALSE;
             break;
-          case 500 : 
-          case 502 : 
-          case 503 : 
-          case 504 : 
+          case 500 :
+          case 502 :
+          case 503 :
+          case 504 :
             if ($this->getLogLevel('error')) {
               $this->log($request->getMethod() .' '. $response->getStatus().' '.$response->getReasonPhrase().' '.$request->getUrl(), PEAR_LOG_WARNING);
               $this->log($response->getBody(), PEAR_LOG_WARNING);
             }
             $this->last_error = json_decode($response->getBody(), TRUE);
             $this->last_error_status_code = $response->getStatus();
-            
+
             // Throw API error
             $this->throwError($response);
             return FALSE;
             break;
-          default : 
+          default :
             break;
         }
     } catch (HTTP_Request2_Exception $e) {
@@ -634,7 +634,7 @@ class PodioBaseAPI {
       }
     }
   }
-  
+
   /**
    * Throws an API error. If an error callback is defined it will be called.
    */
@@ -643,5 +643,5 @@ class PodioBaseAPI {
       call_user_func($this->error_handler, $response);
     }
   }
-  
+
 }

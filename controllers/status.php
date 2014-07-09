@@ -4,17 +4,17 @@ class status extends Mustache {
   public $APP_NAME = APP_NAME;
   public $APP_ROOT_URL = APP_ROOT_URL;
   public $PODIO_ICON_PATH = PODIO_ICON_PATH;
-  
+
   public $GOOGLE_ANALYTICS_ID = false;
-  
+
   private $feedback = array();
-  
+
   public function __construct($aApp) {
-    
+
     if (isset($aApp['google_analytics_id'])) {
       $this->GOOGLE_ANALYTICS_ID = $aApp['google_analytics_id'];
     }
-    
+
     $oauthForStatus = PodioOAuth::instance();
     $baseStatusAPI = PodioBaseAPI::instance($aApp['podio']['server'], $aApp['podio']['client_id'], $aApp['podio']['client_secret'], $aApp['podio']['upload_end_point']);
     $baseStatusAPI->setLogHandler('file', PODIO_ERROR_LOG, '');
@@ -22,13 +22,13 @@ class status extends Mustache {
     $statusApi = new PodioAPI();
     $feedbackAppId = 38098;
     $feedbackAppSortFieldId = 959376;
-    
+
     $items = $statusApi->item->getItems($feedbackAppId, 10000, 0, $feedbackAppSortFieldId, 1, array());
-    
+
     foreach ($items['items'] as $index => $item) {
       $status = null;
       $description = null;
-      
+
       foreach ($item['fields'] as $field) {
         if ($field['external_id'] == "status") {
           $status = $field['values'][0]['value'];
@@ -41,12 +41,12 @@ class status extends Mustache {
       $this->feedback[$index]['title'] = $item['title'];
       $this->feedback[$index]['description'] = $description;
     }
-    
+
   }
-  
+
   public function feedback () {
     $f = new ArrayIterator($this->feedback);
     return $f;
   }
-  
+
 }
